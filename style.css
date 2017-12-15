@@ -1,0 +1,332 @@
+/* Smartphones (portrait) */
+
+@media only screen and (min-width: 300px) and (orientation:portrait) {
+    /* ----------home---------- */
+    #home-page {
+        width: 60vw;
+        height: 60vw;
+        margin: 5vh 19.9vw;
+    }
+    #me {
+        width: 100%;
+        border-radius: 50%;
+        box-shadow: 0 0 20px #FFFFFF;
+    }
+    #dash-bar {
+        width: 100%;
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    /* ----------resume---------- */
+    #right-arrow {
+        position: fixed;
+        height: 25px;
+        padding: 5px;
+        border: 3px solid white;
+        border-radius: 50%;
+        margin-left: 95vw;
+        transform: translateX(4px);
+    }
+    #left-arrow:hover,
+    #right-arrow:hover {
+        cursor: pointer;
+        box-shadow: 0 0 5px #FFFFFF;
+    }
+    #resume {
+        width: 89.9vw;
+        margin: 5vh 5vw;
+        display: grid;
+        grid-gap: 1em;
+        grid-template-columns: 1fr;
+    }
+    #everything-else {
+        display: grid;
+        grid-gap: 1em;
+    }
+    /* gives the style to each resume element */
+    #resume>div:nth-child(odd),
+    #everything-else>div {
+        border: 1px solid white;
+        box-shadow: 0 0 10px #FFFFFF;
+        background-color: rgba(15, 15, 54, 0.726);
+        padding: 1em;
+    }
+    .technology {
+        height: 20px;
+        margin-left: 5px;
+        margin-right: 3px;
+    }
+    #right-arrow {
+        position: relative;
+        height: 25px;
+        padding: 5px;
+        border: 3px solid white;
+        border-radius: 50%;
+        margin-left: 85vw;
+        transform: translate(4px, 2.5vh);
+    }
+    /* ----------portfolio---------- */
+    #portfolio {
+        width: 89.9vw;
+        margin: 5vh 5vw;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 1em;
+    }
+    #left-arrow {
+        position: relative;
+        height: 25px;
+        padding: 5px;
+        border: 3px solid white;
+        border-radius: 50%;
+        margin-left: 1vw;
+        transform: translateY( 2.5vh);
+    }
+    .project {
+        border: 1px solid rgba(194, 192, 192, 0.904);
+        height: 300px;
+    }
+}
+
+
+/* Smartphones (landscape) */
+
+@media only screen and (max-width: 1000px) and (orientation:landscape) {
+    /* homepage */
+    #home-page {
+        width: 80vw;
+        height: 100vh;
+        margin: 5vh 9.9vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    #me {
+        width: 30%;
+        border-radius: 50%;
+        box-shadow: 0 0 20px #FFFFFF;
+    }
+    #dash-bar {
+        width: 100%;
+        margin-top: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    /* resume */
+    #resume {
+        width: 89.9vw;
+        margin: 5vh 5vw;
+        display: grid;
+        grid-gap: 1em;
+        grid-template-columns: 1fr;
+    }
+    #everything-else {
+        display: grid;
+        grid-gap: 1em;
+    }
+    #resume>div:nth-child(odd),
+    #everything-else>div {
+        border: 1px solid white;
+        box-shadow: 0 0 10px #FFFFFF;
+        background-color: rgba(15, 15, 54, 0.726);
+        padding: 1em;
+    }
+    .technology {
+        height: 20px;
+        margin-left: 5px;
+        margin-right: 3px;
+    }
+    #right-arrow {
+        position: relative;
+        height: 25px;
+        padding: 5px;
+        border: 3px solid white;
+        border-radius: 50%;
+        margin-left: 85vw;
+        transform: translate(4px, 2.5vh);
+    }
+    #portfolio {
+        width: 60vw;
+        margin: 5vh 19.9vw;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 1em;
+    }
+    #left-arrow {
+        position: relative;
+        height: 25px;
+        padding: 5px;
+        border: 3px solid white;
+        border-radius: 50%;
+        margin-left: 1vw;
+        transform: translateY( 2.5vh);
+    }
+    .project {
+        border: 1px solid rgba(194, 192, 192, 0.904);
+        height: 300px;
+    }
+}
+
+
+/* laptops */
+
+@media only screen and (min-width: 1001px) {
+    body {
+        background-image: url('images/background1.jpg');
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        color: rgb(255, 255, 255);
+    }
+    #home-page {
+        width: 29.9vw;
+        height: 29.9vw;
+        margin: 5vh 34.9vw;
+        /* transform: translateY( 30%); */
+    }
+    #me {
+        width: 100%;
+        border-radius: 50%;
+        box-shadow: 0 0 20px #FFFFFF;
+    }
+    #dash-bar {
+        width: 100%;
+        margin-top: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    .dash-bar-item {
+        color: rgb(255, 255, 255);
+        text-decoration: none;
+        font-size: 20px;
+    }
+    .dash-bar-item:hover {
+        color: rgba(255, 255, 255, 0.699);
+        text-decoration: none;
+        font-size: 20px;
+    }
+    /*----------------- resume stuff -------------------*/
+    #right-arrow {
+        position: fixed;
+        height: 25px;
+        padding: 5px;
+        border: 3px solid white;
+        border-radius: 50%;
+        margin-left: 95vw;
+        transform: translateX(4px);
+    }
+    #left-arrow:hover,
+    #right-arrow:hover {
+        cursor: pointer;
+        box-shadow: 0 0 5px #FFFFFF;
+    }
+    #left-arrow {
+        position: fixed;
+        height: 25px;
+        padding: 5px;
+        border: 3px solid white;
+        border-radius: 50%;
+        margin-left: 1vw;
+        margin-top: 0;
+    }
+    #resume {
+        width: 89.9vw;
+        margin: 5vh 5vw;
+        display: grid;
+        grid-gap: 2em;
+        grid-template-columns: 1fr 3fr;
+        grid-template-rows: 1fr 3fr;
+    }
+    /* gives the style to each resume element */
+    #resume>div:nth-child(odd),
+    #everything-else>div {
+        border: 1px solid white;
+        box-shadow: 0 0 10px #FFFFFF;
+        background-color: rgba(15, 15, 54, 0.726);
+        padding: 1em;
+    }
+    #everything-else {
+        display: grid;
+        grid-gap: 2em;
+    }
+    #contact-info {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 1;
+        grid-row-end: 2;
+    }
+    #lang-and-tech {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 2;
+        grid-row-end: 3;
+    }
+    #everything-else {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 1;
+        grid-row-end: 3;
+    }
+    .technology {
+        height: 30px;
+        margin-left: 5px;
+        margin-right: 3px;
+    }
+    /*----------------- projects stuff -------------------*/
+    #portfolio {
+        width: 89.9vw;
+        margin: 5vh 5vw;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 2em;
+    }
+    .project {
+        border: 1px solid rgba(194, 192, 192, 0.904);
+        height: 300px;
+        box-shadow: 0 0 10px #FFFFFF;
+    }
+}
+
+
+/* desktops */
+
+
+/* @media only screen and (min-width: 1500px) and (orientation:landscape) {} */
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    font-family: 'PT Mono', monospace;
+}
+
+body {
+    background-image: url('images/background1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: rgb(255, 255, 255);
+}
+
+.dash-bar-item {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.dash-bar-item:hover {
+    color: rgba(255, 255, 255, 0.699);
+    text-decoration: none;
+    font-size: 20px;
+}
+
+#csula {
+    height: 100px;
+    float: right;
+}
