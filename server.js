@@ -6,15 +6,21 @@ const app = express();
 // Port Number
 const port = 8080;
 
-// Set Static Folder
-app.use(express.static(path.join(__dirname, 'public')));
-
 // Body Parser Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.get('*', (req, res) => {
+//portfolio
+app.use(express.static(path.join(__dirname, 'public')));
+app.get('', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
+});
+//Aquila Client
+
+//OS algorithms
+app.use(express.static(path.join(__dirname, 'OS')));
+app.get('/paging-algorithms', (req, res) => {
+    res.sendFile(path.join(__dirname, 'OS/pagereplacement.html'));
 });
 
 // Start Server
