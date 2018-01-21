@@ -3,7 +3,7 @@
 <head>
 
     <link rel="stylesheet" type="text/css" href="style.css">
-    <link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
@@ -18,7 +18,8 @@
     <div id='home-page'>
         <h1>Bryan Bravo</h1>
         <img id='me' src='images/me.jpg' />
-        <p>Aspiring full stack developer. I love the internet so much, I decided it should feed me.</p>
+        <p class='home-text'>Hey thanks for stopping by. My name is Bryan and I am a soon to graduate aspiring full stack developer. I dig building
+            user interfaces with Angular and web apis with NodeJS and Java. I basically live on the internet. Why shouldn't I feed myself with it too. </p>
         <div id='dash-bar'>
             <a id='resume-link' class='dash-bar-item' href='#'>Resume</a>
             <a class='dash-bar-item' href='https://github.com/bryan-bravo'>Github </a>
@@ -39,7 +40,7 @@
                 <p>California State University Los Angeles</p>
                 <img id='csula' src='images/csula.svg' />
                 <p>BS in Computer Science</p>
-                <p>GPA:3.4</p>
+                <p>GPA 3.4</p>
                 <p>Course Work</p>
                 <p>CS5220 Advanced Topics in Web Development (Master Curriculum)</p>
                 <p>CS4220 Current Trends in Web Development</p>
@@ -50,7 +51,20 @@
             </div>
             <div id='projects'>
                 <h3>Projects</h3>
-
+                <p>Aquila</p>
+                <p>- Team Lead and Full Stack Developer.</p>
+                <p>- Restful web app to digitize Cal State LA’s administration of grants and contracts</p>
+                <p>- Developing user interface in Angular 4 and Web Apis in Java Spring framework</p>
+                <p>- Implementing different privileges for university applicants and proposal analyst</p>
+                <p>LBoard</p> 
+                <p>- NodeJS restful web app for logging down events</p> 
+                <p>- User interface built in Angular, Web Apis in Express.js, database: MongoDB</p>
+                <p>- Integrated image cropping on client side and storage in database</p> 
+                <p>- Hosted on Linux Ubuntu digital ocean droplet</p>
+                <p>OS Paging Algorithms</p>
+                <p>- Implemented FIFO, LRU, Optimal paging algorithms and created GUI</p>
+                <p>- Static web page created in vanilla HTML, CSS, JavaScript.</p>
+                <p>- Utilized by class peers to study for exams</p>
             </div>
             <div id='experience'>
                 <h3>Experience</h3>
@@ -98,8 +112,12 @@
     <!--Projects -->
     <img id='left-arrow' src='images/left-arrow.png' />
     <div id='portfolio'>
-        <div class='project'> Aquila</div>
-        <div class='project'> Meli's Portfolio</div>
+        <a href='' class='project'>
+            <p class='project-title'>Aquila</p>
+            <img class='project-image' src='images/Aquila.png' />
+        </a>
+        <!-- ............. -->
+        <!-- ............. -->
         <a href='http://lboard.us' class='project'>
             <p class='project-title'>LBoard</p>
             <img class='project-image' src='images/LBoard.png' />
