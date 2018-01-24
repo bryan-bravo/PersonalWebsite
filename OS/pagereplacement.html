@@ -9,7 +9,7 @@
         body {
             margin: 0;
             padding: 0;
-            background-size: 100%;
+            background-size:cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-image: url("background.jpg")
@@ -21,7 +21,7 @@
             justify-content: space-around;
             align-items: center;
             margin: 0px 0px 0px 0px;
-            width: 100%;
+			min-width: 100%;
         }
         
         #header {
@@ -31,8 +31,9 @@
         }
         
         #frames {
-            height: 90vh !important;
-            overflow: scroll;
+            min-height: 90vh !important;
+			width:auto;
+            overflow-x: scroll;
         }
         
         ul {
@@ -50,6 +51,13 @@
             padding: 15px 20px;
             font-size: 16px;
         }
+		.newString{
+		    background-color: #37e037;
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            font-size: 16px;
+		}
     </style>
 </head>
 
@@ -62,7 +70,7 @@
             <button onclick="FIFO()">FIFO</button>
             <button onclick="LRU()">LRU</button>
             <button onclick="OPTIMAL()">OPTIMAL</button>
-            <button onclick="newString()">NEW STRING</button>
+            <button onclick="newString()" class='newString'>NEW STRING</button>
 
         </div>
     </div>
@@ -80,19 +88,26 @@
         var arrayOfDisplay = [];
         //function newString refresh page
         function newString() {
-            location.reload();
+			initialize();
+			for (i = 0; i < refStringSize; i++) {
+				//make the random array
+				let x = getRandomInt(0, 9);
+				refString.push(x);
+				copyOfRefString.push(x);
+			}
+			document.getElementById("framecount").innerHTML = "Number of Frames: " + frameNumber;
+			document.getElementById("ReferenceString").innerHTML = "ReferenceString: " + refString;
         }
         //get valid input from user	
         function initialize() {
             refStringSize = prompt('Enter how many frames you want sorted(number: 1-30)');
             frameNumber = prompt('enter the number of frames(number)');
-            if (isNaN(frameNumber) || frameNumber == '' || isNaN(refStringSize) || refStringSize == '' || frameNumber > 30) {
-                alert("Please input number between 1 and 30");
-                initialize();
+
+            if (isNaN(frameNumber) || frameNumber == '' || isNaN(refStringSize) || refStringSize == '' || refStringSize > 30) {
+                alert("refStringSize must be a number between 1 and 30");
             }
             if (frameNumber < 1 || frameNumber > 7) {
                 alert("Frame number must be between 1 and 7");
-                initialize();
             }
         }
         //if the value x is in the frames 
@@ -368,16 +383,7 @@
                 container.appendChild(ul);
             }
         }
-        //driver 
-        initialize();
-        for (i = 0; i < refStringSize; i++) {
-            //make the random array
-            let x = getRandomInt(0, 9);
-            refString.push(x);
-            copyOfRefString.push(x);
-        }
-        document.getElementById("framecount").innerHTML = "Number of Frames: " + frameNumber;
-        document.getElementById("ReferenceString").innerHTML = "ReferenceString: " + refString;
+
     </script>
 
 </body>
