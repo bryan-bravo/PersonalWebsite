@@ -53,11 +53,7 @@
         background-color: rgba(15, 15, 54, 0.726);
         padding: 1em;
     }
-    .technology {
-        height: 20px;
-        margin-left: 5px;
-        margin-right: 3px;
-    }
+
     #right-arrow {
         position: relative;
         height: 25px;
@@ -131,11 +127,6 @@
         box-shadow: 0 0 10px #FFFFFF;
         background-color: rgba(15, 15, 54, 0.726);
         padding: 1em;
-    }
-    .technology {
-        height: 20px;
-        margin-left: 5px;
-        margin-right: 3px;
     }
     #right-arrow {
         position: relative;
@@ -211,11 +202,7 @@
         background-color: rgba(15, 15, 54, 0.726);
         padding: 1em;
     }
-    .technology {
-        height: 20px;
-        margin-left: 5px;
-        margin-right: 3px;
-    }
+
     #right-arrow {
         position: relative;
         height: 25px;
@@ -327,11 +314,7 @@
         grid-row-start: 1;
         grid-row-end: 3;
     }
-    .technology {
-        height: 30px;
-        margin-left: 5px;
-        margin-right: 3px;
-    }
+
     /*----------------- projects stuff -------------------*/
     #portfolio {
         width: 89.9vw;
@@ -413,4 +396,13 @@ a {
 
 .project-image {
     width: 100%;
+}
+.span{
+        /* border: 1px solid white; */
+        height: 30px;
+        width: 30px;
+        display: inline-block;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
 }

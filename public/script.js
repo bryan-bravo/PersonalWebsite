@@ -33,7 +33,6 @@ $(function() {
         $("#portfolio").hide("slide", { direction: "right" }, function() {
             $("#home-page").show("slide", { direction: "left" });
             $("#left-arrow").hide();
-
         });
     });
 });
