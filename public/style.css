@@ -4,7 +4,6 @@
     /* ----------home---------- */
     #home-page {
         width: 60vw;
-        margin: 5vh 19.9vw;
     }
     #me {
         width: 100%;
@@ -57,7 +56,6 @@
     #home-page {
         width: 80vw;
         height: 100vh;
-        margin: 5vh 9.9vw;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -236,9 +234,10 @@
 
 html,
 body {
-    height: 100%;
-    background-color: rgba(15, 15, 54);
+    min-height: 100%;    
     width: 100%;
+    background: radial-gradient(ellipse at bottom, #2896c7 00%, #090a0f 100%);
+    color:white;
     margin: 0;
     font-family: 'Open Sans', sans-serif;
 }
