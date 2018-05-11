@@ -5,29 +5,27 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-        crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
-        crossorigin="anonymous"></script>
-    <script src="script.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body>
+    <div id="particles-js"></div>
+
     <!-- home -->
     <div id='home-page'>
-        <h1>Bryan Bravo</h1>
-        <img id='me' src='images/me.jpg' />
-        <p class='home-text'>Hey thanks for stopping by. My name is Bryan and I am a soon to graduate aspiring full stack developer. I dig building
-            user interfaces with Angular and web apis with NodeJS and Java. I basically live on the internet. Why shouldn't
-            I feed myself with it too. </p>
-        <div id='dash-bar'>
-            <a id='resume-link' class='dash-bar-item' href='#'>Resume</a>
-            <a class='dash-bar-item' href='https://github.com/bryan-bravo'>Github </a>
-            <a id='portfolio-link' class='dash-bar-item' href='#'>Portfolio</a>
+        <div id='home-text'>
+            <h1>Bryan Bravo</h1>
+            <h3>2018 Computer Science Graduate from California State University Los Angeles, with a love for web related technologies
+                and cheese. Check out my</h3>
+            <div id='dash-bar'>
+                <a id='resume-link' class='dash-bar-item' href='#resume'>Resume</a>
+                <a class='dash-bar-item' href='https://github.com/bryan-bravo'>Github </a>
+                <a id='portfolio-link' class='dash-bar-item' href='#portfolio'>Work</a>
+            </div>
         </div>
+        <img id='me' src='images/me.jpg' />
+
     </div>
-    <img id='right-arrow' src='images/right-arrow.png' />
     <!-- resume -->
     <div id='resume'>
         <div id='contact-info'>
@@ -38,42 +36,46 @@
         <div id='everything-else'>
             <div id='education'>
                 <h3>Education</h3>
-                <p>California State University Los Angeles</p>
                 <img id='csula' src='images/csula.svg' />
-                <p>BS in Computer Science</p>
-                <p>GPA 3.4</p>
-                <p>Course Work</p>
-                <p>CS5220 Advanced Topics in Web Development (Master Curriculum)</p>
-                <p>CS4220 Current Trends in Web Development</p>
-                <p>CS3220 Intro to Web Development</p>
-                <p>CS4470 Networking Protocols</p>
-                <p>CS4222 Database Design</p>
-                <p>CS312 Analysis of Algorithms</p>
+                <ul>
+                    <li>California State University Los Angeles</li>
+                    <li>BS in Computer Science</li>
+                    <li>GPA 3.4</li>
+                </ul>
             </div>
             <div id='projects'>
-                <h3>Projects</h3>
-                <p>Aquila</p>
-                <p>- Team Lead and Full Stack Developer.</p>
-                <p>- Restful web app to digitize Cal State LA’s administration of grants and contracts</p>
-                <p>- Developing user interface in Angular 4 and Web Apis in Java Spring framework</p>
-                <p>- Implementing different privileges for university applicants and proposal analyst</p>
-                <p>LBoard</p>
-                <p>- NodeJS restful web app for logging down events</p>
-                <p>- User interface built in Angular, Web Apis in Express.js, database: MongoDB</p>
-                <p>- Integrated image cropping on client side and storage in database</p>
-                <p>- Hosted on Linux Ubuntu digital ocean droplet</p>
-                <p>OS Paging Algorithms</p>
-                <p>- Implemented FIFO, LRU, Optimal paging algorithms and created GUI</p>
-                <p>- Static web page created in vanilla HTML, CSS, JavaScript.</p>
-                <p>- Utilized by class peers to study for exams</p>
+                <h2>Projects</h2>
+                <h3>Aquila</h3>
+                <ul>
+                    <li>Team Lead and Full Stack Developer.</li>
+                    <li>Restful web app to digitize Cal State LA’s administration of grants and contracts</li>
+                    <li>Developing user interface in Angular 4 and Web Apis in Java Spring framework</li>
+                    <li>Implementing different privileges for university applicants and proposal analyst</li>
+                </ul>
+
+                <h3>LBoard</h3>
+                <ul>
+                    <li>NodeJS restful web app for logging down events</li>
+                    <li>User interface built in Angular, Web Apis in Express.js, database: MongoDB</li>
+                    <li>Integrated image cropping on client side and storage in database</li>
+                    <li>Hosted on Linux Ubuntu digital ocean droplet</li>
+                </ul>
+                <h3>OS Paging Algorithms</h3>
+                <ul>
+                    <li>Implemented FIFO, LRU, Optimal paging algorithms and created GUI</li>
+                    <li>Static web page created in vanilla HTML, CSS, JavaScript.</li>
+                    <li>Utilized by class peers to study for exams</li>
+                </ul>
             </div>
             <div id='experience'>
-                <h3>Experience</h3>
-                <p> Work Shop Facilitator</p>
-                <p>California State University Los Angeles STEP Program :June 2013 - August 2013</p>
-                <p>-Worked in team to facitilate a class of college bound engineering students.</p>
-                <p>-Created curriculum to prepare students for placement exams.</p>
-                <p>-Collaborated with professor to monitor student's progress. </p>
+                <h2>Experience</h2>
+                <h3> Work Shop Facilitator</h3>
+                <ul>
+                    <li>California State University Los Angeles STEP Program :June 2013 - August 2013</li>
+                    <li>Worked in team to facitilate a class of college bound engineering students.</li>
+                    <li>Created curriculum to prepare students for placement exams.</li>
+                    <li>Collaborated with professor to monitor student's progress. </li>
+                </ul>
             </div>
         </div>
         <div id='lang-and-tech'>
@@ -93,27 +95,28 @@
                     <span class='span' style='background-image: url(images/mongo.png);'></span>MongoDB</p>
                 <p>
                     <span class='span' style='background-image: url(images/angular.png);'></span> Angular</p>
-                <p><span class='span' ></span>Express</p>
                 <p>
-                        <span class='span' style='background-image: url(images/nodejs.png);'></span>NodeJS</p>
+                    <span class='span'></span>Express</p>
                 <p>
-                        <span class='span' style='background-image: url(images/apache.png);'></span>Apache</p>
+                    <span class='span' style='background-image: url(images/nodejs.png);'></span>NodeJS</p>
                 <p>
-                        <span class='span' style='background-image: url(images/tomcat.png);'></span>Tomcat</p>
-                <p><span class='span'></span>JSP</p>
+                    <span class='span' style='background-image: url(images/apache.png);'></span>Apache</p>
                 <p>
-                        <span class='span' style='background-image: url(images/spring.png);'></span> Spring </p>
+                    <span class='span' style='background-image: url(images/tomcat.png);'></span>Tomcat</p>
                 <p>
-                        <span class='span' style='background-image: url(images/sql.png);'></span>SQL</p>
+                    <span class='span'></span>JSP</p>
                 <p>
-                        <span class='span' style='background-image: url(images/git.png);'></span>GIT</p>
+                    <span class='span' style='background-image: url(images/spring.png);'></span> Spring </p>
+                <p>
+                    <span class='span' style='background-image: url(images/sql.png);'></span>SQL</p>
+                <p>
+                    <span class='span' style='background-image: url(images/git.png);'></span>GIT</p>
             </div>
         </div>
     </div>
     <!--Projects -->
-    <img id='left-arrow' src='images/left-arrow.png' />
     <div id='portfolio'>
-        <a  class='project'>
+        <a class='project'>
             <p class='project-title'>Aquila (In Progress)</p>
             <img class='project-image' src='images/Aquila.png' />
         </a>
@@ -128,6 +131,8 @@
             <img class='project-image' src='images/paging-algorithms.png' />
         </a>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>

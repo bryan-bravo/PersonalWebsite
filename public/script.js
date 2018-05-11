@@ -1,38 +1,28 @@
-$(function() {
-    //start
-    $("#resume").hide();
-    $("#portfolio").hide();
-    $("#left-arrow").hide();
-    $("#right-arrow").hide();
-
-    //home to resume
-    $("#resume-link").click(function() {
-        $("#home-page").hide("slide", { direction: "right" }, function() {
-            $("#resume").show("slide", { direction: "left" });
-            $("#right-arrow").show();
+particlesJS.load('particles-js', 'particlesjs-config.json', function() {
+    console.log('callback - particles.js config loaded');
+  })
+  // handles the scrolling
+  $(document).ready(function(){
+    // Add smooth scrolling to all links
+    $("a").on('click', function(event) {
+  
+      // Make sure this.hash has a value before overriding default behavior
+      if (this.hash !== "") {
+        // Prevent default anchor click behavior
+        event.preventDefault();
+  
+        // Store hash
+        var hash = this.hash;
+  
+        // Using jQuery's animate() method to add smooth page scroll
+        // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+        $('html, body').animate({
+          scrollTop: $(hash).offset().top
+        }, 800, function(){
+     
+          // Add hash (#) to URL when done scrolling (default click behavior)
+          window.location.hash = hash;
         });
+      } // End if
     });
-    //home to portfolio
-    $("#portfolio-link").click(function() {
-        $("#home-page").hide("slide", { direction: "left" }, function() {
-            $("#right-arrow").hide();
-            $("#portfolio").show("slide", { direction: "right" });
-            $("#left-arrow").show();
-        });
-    });
-    //resume to home
-    $("#right-arrow").click(function() {
-        $("#resume").hide("slide", { direction: "left" }, function() {
-            $("#home-page").show("slide", { direction: "right" });
-            $("#right-arrow").hide();
-        });
-    });
-
-    //portfolio to home
-    $("#left-arrow").click(function() {
-        $("#portfolio").hide("slide", { direction: "right" }, function() {
-            $("#home-page").show("slide", { direction: "left" });
-            $("#left-arrow").hide();
-        });
-    });
-});
+  });
