@@ -16,7 +16,10 @@ app.get('', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 //Aquila Client
-
+app.use(express.static(path.join(__dirname, 'Aquila')));
+app.get('/aquila', (req, res) => {
+    res.sendFile(path.join(__dirname, 'Aquila/index.html'));
+});
 //OS algorithms
 app.use(express.static(path.join(__dirname, 'OS')));
 app.get('/paging-algorithms', (req, res) => {
