@@ -168,13 +168,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 var AppRoutes = [
-    { path: '', component: __WEBPACK_IMPORTED_MODULE_10__components_landing_page_landing_page_component__["a" /* LandingPageComponent */] },
-    { path: 'login', component: __WEBPACK_IMPORTED_MODULE_12__components_login_login_component__["a" /* LoginComponent */] },
-    { path: 'home', component: __WEBPACK_IMPORTED_MODULE_11__components_pihome_page_pihome_page_component__["a" /* PiHomePageComponent */] },
-    { path: 'pipreaward', component: __WEBPACK_IMPORTED_MODULE_16__components_pi_pre_award_pi_pre_award_component__["a" /* PiPreAwardComponent */] },
-    { path: 'editproposal/:id', component: __WEBPACK_IMPORTED_MODULE_13__components_edit_proposal_edit_proposal_component__["a" /* EditProposalComponent */] },
-    { path: 'test', component: __WEBPACK_IMPORTED_MODULE_30__components_test_test_component__["a" /* TestComponent */] },
-    { path: 'proposalarchive', component: __WEBPACK_IMPORTED_MODULE_22__components_proposal_archive_proposal_archive_component__["a" /* ProposalArchiveComponent */] }
+    { path: 'aquila', component: __WEBPACK_IMPORTED_MODULE_10__components_landing_page_landing_page_component__["a" /* LandingPageComponent */] },
+    { path: 'aquila/login', component: __WEBPACK_IMPORTED_MODULE_12__components_login_login_component__["a" /* LoginComponent */] },
+    { path: 'aquila/home', component: __WEBPACK_IMPORTED_MODULE_11__components_pihome_page_pihome_page_component__["a" /* PiHomePageComponent */] },
+    { path: 'aquila/pipreaward', component: __WEBPACK_IMPORTED_MODULE_16__components_pi_pre_award_pi_pre_award_component__["a" /* PiPreAwardComponent */] },
+    { path: 'aquila/editproposal/:id', component: __WEBPACK_IMPORTED_MODULE_13__components_edit_proposal_edit_proposal_component__["a" /* EditProposalComponent */] },
+    { path: 'aquila/test', component: __WEBPACK_IMPORTED_MODULE_30__components_test_test_component__["a" /* TestComponent */] },
+    { path: 'aquila/proposalarchive', component: __WEBPACK_IMPORTED_MODULE_22__components_proposal_archive_proposal_archive_component__["a" /* ProposalArchiveComponent */] }
 ];
 var AppModule = (function () {
     function AppModule() {
@@ -332,7 +332,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/dashboard/dashboard.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>AQUILA</p>\r\n<!-- login -->\r\n<label *ngIf=\"!authService.loggedIn()\" [routerLink]=\"['/login']\">Login</label>\r\n<!-- logout -->\r\n<label *ngIf=\"authService.loggedIn()\" (click)='authService.logout()' [routerLink]=\"['/']\">LogOut</label>\r\n"
+module.exports = "<p>AQUILA</p>\r\n<!-- login -->\r\n<label *ngIf=\"!authService.loggedIn()\" [routerLink]=\"['/aquila/login']\">Login</label>\r\n<!-- logout -->\r\n<label *ngIf=\"authService.loggedIn()\" (click)='authService.logout()' [routerLink]=\"['aquila/']\">LogOut</label>\r\n"
 
 /***/ }),
 
@@ -397,7 +397,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/edit-proposal/edit-proposal.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf='showSpinner' class='spinner' class='spinner-container'>\r\n  <p-progressSpinner  animationDuration='.75s'></p-progressSpinner>\r\n</div>\r\n\r\n<div @fade *ngIf='menuState && !showSpinner' id='menu-state'>\r\n  <div id='dashboard'>\r\n    <h3 id='name'>{{proposal?.proposalName}}</h3>\r\n    <button *ngIf='user.type!=\"INVESTIGATOR\"'pButton [routerLink]=\"['/proposalarchive']\" label='Proposal Archive'></button>\r\n    <button pButton [routerLink]=\"['/pipreaward']\" label='Pre Award'></button>\r\n    <button pButton label='Help' icon='fa-question'></button>\r\n  </div>\r\n  <div id='menu-container'>\r\n    <!-- timeline -->\r\n    <div class='required-forms' id='timeline' (click)='setCurrentForm(\"Timeline\")'>\r\n      <p class='title'>Timeline</p>\r\n      <!-- [@stageAnimation]='timeline.stages.length' -->\r\n      <ul id='timeline-bar'>\r\n        <li  *ngFor='let stage of proposal.timeline.stages; index as i'>\r\n          <!-- bar -->\r\n          <div class='bar' appTimelineBar *ngIf='i!=0' [ngClass]='{\"barCompleted\": stage.uasReviewed}'></div>\r\n          <div class='icon-name-container'>\r\n            <!-- icon -->\r\n            <div class='icon' [ngClass]=\"{'iconCompleted': stage.uasReviewed, 'selected-icon':stageIndex==i}\"></div>\r\n            <!-- name -->\r\n            <label class='name'>{{stage.name}}</label>\r\n          </div>\r\n        </li>\r\n      </ul>\r\n    </div>\r\n    <!-- forms -->\r\n     <div id='forms'>\r\n      <div class='required-forms' (click)='setCurrentForm(\"Intake\")'>\r\n        <p class='title'>Intake Form </p>\r\n        <img src='../../../assets/images/file.png' class='form-image'>\r\n      </div>\r\n      <div class='required-forms' *ngIf='proposal.approvalForm' (click)='setCurrentForm(\"Approval\")'>\r\n        <p class='title'>Approval Form</p>\r\n        <img src='../../../assets/images/file.png' class='form-image'>\r\n\r\n      </div>\r\n      <div class='required-forms' *ngIf='proposal.equipmentForm' (click)='setCurrentForm(\"Equipment\")'>\r\n        <p class='title'>Equipment Form</p>\r\n        <img src='../../../assets/images/file.png' class='form-image'>\r\n\r\n      </div>\r\n      <div class='required-forms' *ngIf='proposal.economicInterestPi' (click)='setCurrentForm(\"economic-interest\")'>\r\n        <p class='title'>PI Statement Of Economic Interest</p>\r\n        <img src='../../../assets/images/file.png' class='form-image'>\r\n\r\n      </div>\r\n    </div>\r\n    <!-- tables -->\r\n    <div *ngIf='proposal.conflictOfInterestForms.length!=0' id='tables'>\r\n      <!-- <div class='required-forms' (click)='setCurrentForm(\"coi\")'></div> -->\r\n      <div class='coi-wrapper'>\r\n      <p-dataTable [value]='proposal?.conflictOfInterestForms' selectionMode='single' (onRowSelect)='coiSelect($event)'>\r\n          <p-header>Conflict Of Interest Forms</p-header>\r\n          <p-column field='type' header='Type'></p-column>\r\n          <p-column field='progress' header='Stage' value='incomplete'></p-column>\r\n        </p-dataTable>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div @fade *ngIf='routerState' id='router-container'>\r\n  <button pButton id='menu-return' (click)='changeState()' label='Forms' icon='fa-arrow-up'></button>\r\n  <app-intake *ngIf='currentForm==\"Intake\"'></app-intake>\r\n  <app-equipment *ngIf='currentForm==\"Equipment\"'></app-equipment>\r\n  <app-approval *ngIf='currentForm==\"Approval\"'></app-approval>\r\n  <app-timeline *ngIf='currentForm==\"Timeline\"'></app-timeline>\r\n  <app-coi *ngIf='currentForm==\"coi\"'></app-coi>\r\n  <app-economic-interest *ngIf='currentForm==\"economic-interest\"'></app-economic-interest>\r\n</div>\r\n"
+module.exports = "<div *ngIf='showSpinner' class='spinner' class='spinner-container'>\r\n  <p-progressSpinner  animationDuration='.75s'></p-progressSpinner>\r\n</div>\r\n\r\n<div @fade *ngIf='menuState && !showSpinner' id='menu-state'>\r\n  <div id='dashboard'>\r\n    <h3 id='name'>{{proposal?.proposalName}}</h3>\r\n    <button *ngIf='user.type!=\"INVESTIGATOR\"'pButton [routerLink]=\"['/aquila/proposalarchive']\" label='Proposal Archive'></button>\r\n    <button pButton [routerLink]=\"['/aquila/pipreaward']\" label='Pre Award'></button>\r\n    <button pButton label='Help' icon='fa-question'></button>\r\n  </div>\r\n  <div id='menu-container'>\r\n    <!-- timeline -->\r\n    <div class='required-forms' id='timeline' (click)='setCurrentForm(\"Timeline\")'>\r\n      <p class='title'>Timeline</p>\r\n      <!-- [@stageAnimation]='timeline.stages.length' -->\r\n      <ul id='timeline-bar'>\r\n        <li  *ngFor='let stage of proposal.timeline.stages; index as i'>\r\n          <!-- bar -->\r\n          <div class='bar' appTimelineBar *ngIf='i!=0' [ngClass]='{\"barCompleted\": stage.uasReviewed}'></div>\r\n          <div class='icon-name-container'>\r\n            <!-- icon -->\r\n            <div class='icon' [ngClass]=\"{'iconCompleted': stage.uasReviewed, 'selected-icon':stageIndex==i}\"></div>\r\n            <!-- name -->\r\n            <label class='name'>{{stage.name}}</label>\r\n          </div>\r\n        </li>\r\n      </ul>\r\n    </div>\r\n    <!-- forms -->\r\n     <div id='forms'>\r\n      <div class='required-forms' (click)='setCurrentForm(\"Intake\")'>\r\n        <p class='title'>Intake Form </p>\r\n        <img src='../../../assets/images/file.png' class='form-image'>\r\n      </div>\r\n      <div class='required-forms' *ngIf='proposal.approvalForm' (click)='setCurrentForm(\"Approval\")'>\r\n        <p class='title'>Approval Form</p>\r\n        <img src='../../../assets/images/file.png' class='form-image'>\r\n\r\n      </div>\r\n      <div class='required-forms' *ngIf='proposal.equipmentForm' (click)='setCurrentForm(\"Equipment\")'>\r\n        <p class='title'>Equipment Form</p>\r\n        <img src='../../../assets/images/file.png' class='form-image'>\r\n\r\n      </div>\r\n      <div class='required-forms' *ngIf='proposal.economicInterestPi' (click)='setCurrentForm(\"economic-interest\")'>\r\n        <p class='title'>PI Statement Of Economic Interest</p>\r\n        <img src='../../../assets/images/file.png' class='form-image'>\r\n\r\n      </div>\r\n    </div>\r\n    <!-- tables -->\r\n    <div *ngIf='proposal.conflictOfInterestForms.length!=0' id='tables'>\r\n      <!-- <div class='required-forms' (click)='setCurrentForm(\"coi\")'></div> -->\r\n      <div class='coi-wrapper'>\r\n      <p-dataTable [value]='proposal?.conflictOfInterestForms' selectionMode='single' (onRowSelect)='coiSelect($event)'>\r\n          <p-header>Conflict Of Interest Forms</p-header>\r\n          <p-column field='type' header='Type'></p-column>\r\n          <p-column field='progress' header='Stage' value='incomplete'></p-column>\r\n        </p-dataTable>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div @fade *ngIf='routerState' id='router-container'>\r\n  <button pButton id='menu-return' (click)='changeState()' label='Forms' icon='fa-arrow-up'></button>\r\n  <app-intake *ngIf='currentForm==\"Intake\"'></app-intake>\r\n  <app-equipment *ngIf='currentForm==\"Equipment\"'></app-equipment>\r\n  <app-approval *ngIf='currentForm==\"Approval\"'></app-approval>\r\n  <app-timeline *ngIf='currentForm==\"Timeline\"'></app-timeline>\r\n  <app-coi *ngIf='currentForm==\"coi\"'></app-coi>\r\n  <app-economic-interest *ngIf='currentForm==\"economic-interest\"'></app-economic-interest>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -2049,7 +2049,7 @@ var LoginComponent = (function () {
         //   if (response.user.username != null) {
         this.authenticationService.storeUserData({ 'username': 'username1', 'id': 1 });
         //  this.authenticationService.storeJWT(response.jwt);
-        this.router.navigate(['/home']);
+        this.router.navigate(['/aquila/home']);
         //   } else {
         //     // handle the bug Unexpected end of JSON input at Object.parse
         //     this.failedLoginFlag = true;
@@ -2058,7 +2058,7 @@ var LoginComponent = (function () {
     };
     LoginComponent.prototype.checkIfLoggedIn = function () {
         if (this.authenticationService.loggedIn()) {
-            this.router.navigate(['/home']);
+            this.router.navigate(['/aquila/home']);
         }
     };
     return LoginComponent;
@@ -2098,7 +2098,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/pi-pre-award/pi-pre-award.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div id='dash-bar'>\r\n  <h3 class = 'page-title'>{{userName}}'s Proposal's</h3>\r\n  <button pButton label='Home' [routerLink]=\"['/home']\" icon='fa-home'></button>\r\n  <button  pButton label='New Proposal'(click)=\"op.toggle($event)\" icon='fa-plus'></button>\r\n</div>\r\n<div id='proposals'>\r\n  <p-dataTable [value]='usersProposals' (onRowSelect)='navigate($event.data.id)' selectionMode='single' [immutable]='false'>\r\n    <p-header>Proposals</p-header>\r\n    <p-column field='proposalName' header='Name'></p-column>\r\n    <p-column field='dateCreated' header='Date Created'></p-column>\r\n    <p-column field='status' header='Status'></p-column>\r\n  </p-dataTable>\r\n  <p-overlayPanel header=\"New Proposal\" showEffect=\"fade\" #op>\r\n    <form (ngSubmit)='createProposal()'>\r\n      <label>Proposal Name</label>\r\n      <input type='input' pInputText [(ngModel)]='newProposalName' name='newProposalName'>\r\n      <button pButton class='ui-button-success' type='submit' label='New Proposal'></button>\r\n    </form>\r\n  </p-overlayPanel>\r\n</div>\r\n"
+module.exports = "<div id='dash-bar'>\r\n  <h3 class = 'page-title'>{{userName}}'s Proposal's</h3>\r\n  <button pButton label='Home' [routerLink]=\"['/aquila/home']\" icon='fa-home'></button>\r\n  <button  pButton label='New Proposal'(click)=\"op.toggle($event)\" icon='fa-plus'></button>\r\n</div>\r\n<div id='proposals'>\r\n  <p-dataTable [value]='usersProposals' (onRowSelect)='navigate($event.data.id)' selectionMode='single' [immutable]='false'>\r\n    <p-header>Proposals</p-header>\r\n    <p-column field='proposalName' header='Name'></p-column>\r\n    <p-column field='dateCreated' header='Date Created'></p-column>\r\n    <p-column field='status' header='Status'></p-column>\r\n  </p-dataTable>\r\n  <p-overlayPanel header=\"New Proposal\" showEffect=\"fade\" #op>\r\n    <form (ngSubmit)='createProposal()'>\r\n      <label>Proposal Name</label>\r\n      <input type='input' pInputText [(ngModel)]='newProposalName' name='newProposalName'>\r\n      <button pButton class='ui-button-success' type='submit' label='New Proposal'></button>\r\n    </form>\r\n  </p-overlayPanel>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -2150,7 +2150,7 @@ var PiPreAwardComponent = (function () {
         this.displayDialog = true;
     };
     PiPreAwardComponent.prototype.navigate = function (proposalId) {
-        this.router.navigate(['/editproposal', proposalId]);
+        this.router.navigate(['/aquila/editproposal', proposalId]);
     };
     return PiPreAwardComponent;
 }());
@@ -2275,7 +2275,7 @@ var PiHomePageComponent = (function () {
     // stops routing if first time using
     PiHomePageComponent.prototype.navigate = function (location) {
         if (!this.firstTimeUser) {
-            this.router.navigate([location]);
+            this.router.navigate(["aquila/" + location]);
         }
     };
     // prompts form fields
@@ -2323,7 +2323,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/proposal-archive/proposal-archive.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div id='dash-bar'>\r\n  <h3 class = 'page-title'>Proposal Archive</h3>\r\n  <button pButton label='Home' [routerLink]=\"['/home']\" icon='fa-home'></button>\r\n  <span class=\"ui-float-label\">\r\n      <input id=\"searchTerm\" type=\"password\" pInputText [(ngModel)]=\"searchTerm\" name='searchTerm'/>\r\n      <label for=\"searchTerm\">Search</label>\r\n  </span>\r\n  <!-- <select>\r\n      <option>ALL</option>\r\n      <option>DRAFT</option>\r\n      <option>MEETING</option>\r\n      <option>POSTMEETING</option>\r\n      <option>FINAL</option>\r\n      <option>CANCELLED</option>\r\n    </select> -->\r\n</div>\r\n<div id='proposals'>\r\n  <p-dataTable [value]='displayedProposals' (onRowSelect)='navigate($event.data.id)' selectionMode='single' [immutable]='false' [rows]=\"15\" [paginator]=\"true\">\r\n    <p-header>Archive</p-header>\r\n    <p-column field='id' header='Proposal #'></p-column>\r\n    <p-column field='proposalName' header='Name'></p-column>\r\n    <p-column field='intakeForm.principleInvestigator' header='Investigator'></p-column>\r\n    <p-column field='dateCreated' header='Date Created'></p-column>\r\n    <p-column field='status' header='Status'></p-column>\r\n  </p-dataTable>\r\n</div>"
+module.exports = "<div id='dash-bar'>\r\n  <h3 class = 'page-title'>Proposal Archive</h3>\r\n  <button pButton label='Home' [routerLink]=\"['/aquila/home']\" icon='fa-home'></button>\r\n  <span class=\"ui-float-label\">\r\n      <input id=\"searchTerm\" type=\"password\" pInputText [(ngModel)]=\"searchTerm\" name='searchTerm'/>\r\n      <label for=\"searchTerm\">Search</label>\r\n  </span>\r\n  <!-- <select>\r\n      <option>ALL</option>\r\n      <option>DRAFT</option>\r\n      <option>MEETING</option>\r\n      <option>POSTMEETING</option>\r\n      <option>FINAL</option>\r\n      <option>CANCELLED</option>\r\n    </select> -->\r\n</div>\r\n<div id='proposals'>\r\n  <p-dataTable [value]='displayedProposals' (onRowSelect)='navigate($event.data.id)' selectionMode='single' [immutable]='false' [rows]=\"15\" [paginator]=\"true\">\r\n    <p-header>Archive</p-header>\r\n    <p-column field='id' header='Proposal #'></p-column>\r\n    <p-column field='proposalName' header='Name'></p-column>\r\n    <p-column field='intakeForm.principleInvestigator' header='Investigator'></p-column>\r\n    <p-column field='dateCreated' header='Date Created'></p-column>\r\n    <p-column field='status' header='Status'></p-column>\r\n  </p-dataTable>\r\n</div>"
 
 /***/ }),
 
@@ -2368,7 +2368,7 @@ var ProposalArchiveComponent = (function () {
         // });
     };
     ProposalArchiveComponent.prototype.navigate = function (proposalId) {
-        this.router.navigate(['/editproposal', proposalId]);
+        this.router.navigate(['/aquila/editproposal', proposalId]);
     };
     return ProposalArchiveComponent;
 }());

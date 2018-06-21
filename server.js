@@ -16,9 +16,9 @@ app.get('', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 //Aquila Client
-app.use(express.static(path.join(__dirname, 'Aquila')));
+app.use(express.static(path.join(__dirname, 'dist')));
 app.get('/aquila', (req, res) => {
-    res.sendFile(path.join(__dirname, 'Aquila/index.html'));
+    res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 //OS algorithms
 app.use(express.static(path.join(__dirname, 'OS')));
