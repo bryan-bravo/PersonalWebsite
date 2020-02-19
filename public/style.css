@@ -5,5 +5,16 @@ body {
     width: 100%;
     margin: 0;
     font-family: 'Open Sans', sans-serif;
+}
 
+#dash-bar {
+    width:100%;
+    display:flex;
+    flex-direction:row;
+    justify-content:flex-end;
+
+} 
+#dash-bar > a {
+    margin-left: 1 em;
+    
 }
