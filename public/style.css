@@ -17,7 +17,29 @@ body {
 #dash-bar > a {
     margin-left: 1em;   
 }
-
+/*----------------- home page-------------- */
+#home-page {
+    height: 100vh;
+    width: 89.9vw;
+    margin: 0 5vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    /* transform: translateY( 30%); */
+}
+#home-page-bio {
+    width: 50%;
+    margin-right: 0;
+}
+#home-page-photo {
+    display: inline-block;
+    width: 40%;
+    border-radius: 50%;
+}
+#home-page-photo > img {
+    width: 100%;
+}
 /*----------------- resume stuff -------------------*/
     #resume {
         width: 89.9vw;
@@ -30,7 +52,7 @@ body {
     /* gives the style to each resume element */
     #resume>div:nth-child(odd),
     #everything-else>div {
-        border: 1px solid black;
+        /* border: 1px solid black; */
         box-shadow: 0 0 10px #FFFFFF;
         padding: 0 1em;
     }
