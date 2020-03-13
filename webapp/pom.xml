@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.portfolio.bork</groupId>
 	<artifactId>webapp</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>01</version>
 	<packaging>war</packaging>
 	<name>webapp</name>
 	<description>Demo project for Spring Boot</description>
@@ -50,6 +50,12 @@
 					<artifactId>junit-vintage-engine</artifactId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+		 <!-- non spring shit -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
 
