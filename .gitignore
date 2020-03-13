@@ -97,3 +97,4 @@ About
 # client side
 /node_modules/
 images/
+webapp/src/main/resources/application.properties
