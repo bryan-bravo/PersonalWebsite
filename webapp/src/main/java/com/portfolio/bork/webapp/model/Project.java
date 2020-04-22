@@ -1,7 +1,6 @@
 package com.portfolio.bork.webapp.model;
 
 import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,25 +11,28 @@ import javax.persistence.Table;
 
 @Entity
 @Table (name = "project")
-public class Project {
+public class Project{
+
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name = "p_id")
     private Long id;
     @Column( name="p_title" )
-    String title;
+    private String title;
     @Column( name = "p_date_modified")
-    String dateModified;
+    private String dateModified;
     @OneToMany(mappedBy = "project")
-    List<ContentBlock> contentBlocks;
+    private List<ContentBlock> contentBlocks;
 
     public Project() {
     }
 
-    public Project(Long id, String title, String dateModified) {
+
+    public Project(Long id, String title, String dateModified, List<ContentBlock> contentBlocks) {
         this.id = id;
         this.title = title;
         this.dateModified = dateModified;
+        this.contentBlocks = contentBlocks;
     }
 
     public Long getId() {
@@ -57,6 +59,14 @@ public class Project {
         this.dateModified = dateModified;
     }
 
+    public List<ContentBlock> getContentBlocks() {
+        return this.contentBlocks;
+    }
+
+    public void setContentBlocks(List<ContentBlock> contentBlocks) {
+        this.contentBlocks = contentBlocks;
+    }
+  
     @Override
     public String toString() {
         return "{" +

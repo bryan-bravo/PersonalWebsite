@@ -11,7 +11,6 @@ public class ProjectDaoImpl implements ProjectDao {
     @PersistenceContext
     private EntityManager entityManager;
     
-    @Autowired
     public ProjectDaoImpl() {}
 
     public Project getProjectById(Long projectId) {

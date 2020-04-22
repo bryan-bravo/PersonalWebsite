@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- this silly boi is for when I run tests I dont get an avalanche of DEBUG level shit on console -->
-<configuration>
-    <include resource="org/springframework/boot/logging/logback/base.xml" />
-    <logger name="org.springframework" level="OFF"/>
-</configuration>

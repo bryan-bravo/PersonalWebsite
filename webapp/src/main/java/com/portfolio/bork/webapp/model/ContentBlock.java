@@ -9,6 +9,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table (name = "content_block")
 public class ContentBlock {
@@ -16,20 +18,21 @@ public class ContentBlock {
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="cb_id")
-    Long id;
+    private Long id;
         
     @Column(name="cb_type")
-    String type;
+    private String type;
     
     @Column(name="cb_content")
-    String content;
+    private String content;
     
     @Column(name="cb_order")
-    int order;
+    private int order;
     
     @ManyToOne
     @JoinColumn(name = "fk_project_id") // this generates the foreign key column in the database
-    Project project; 
+    @JsonIgnore
+    private Project project; 
     
 
     public ContentBlock () {
