@@ -5,4 +5,8 @@ public interface ProjectDao {
     
     public Project getProjectById(Long projectId);
 
+    public Project saveProject(Project project);
+
+    public boolean deleteProject (Long projectId);
+    
 }
