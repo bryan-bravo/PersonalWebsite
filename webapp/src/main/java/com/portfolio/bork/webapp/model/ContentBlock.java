@@ -86,7 +86,6 @@ public class ContentBlock {
         this.project = project;
     }
     
-
     // optional fields
     // ContentFile file;
     // Link link;

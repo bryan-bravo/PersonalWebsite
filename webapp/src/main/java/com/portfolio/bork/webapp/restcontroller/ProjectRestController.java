@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.portfolio.bork.webapp.services.db.ContentBlockDao;
 import com.portfolio.bork.webapp.services.db.ProjectDao;
+import com.portfolio.bork.webapp.model.ContentBlock;
 import com.portfolio.bork.webapp.model.Project;
 
 
@@ -14,6 +16,7 @@ import com.portfolio.bork.webapp.model.Project;
 public class ProjectRestController {
 
     private ProjectDao projectDao;
+    private ContentBlockDao contentBlockDao;
     
     // get project
     @RequestMapping(value = "/project/{projectId}", method = RequestMethod.GET )
@@ -28,6 +31,7 @@ public class ProjectRestController {
          return projectDao.saveProject(project);
         
     }
+
     // Delete Project
     @RequestMapping(value = "/project/{projectId}", method = RequestMethod.DELETE )
     public boolean deleteProjectById( @PathVariable String projectId) {
@@ -35,13 +39,35 @@ public class ProjectRestController {
             return projectDao.deleteProject(projectIdLong);
     }
 
+    // Save ContentBlock
+    @RequestMapping(value = "/contentblock/{projectId}", method = RequestMethod.POST )
+    public ContentBlock saveContentBlock( @PathVariable String projectId, @RequestBody ContentBlock contentBlock) {
+        Long projectIdLong = Long.parseLong(projectId);
+        Project project = projectDao.getProjectById(projectIdLong);
+        return contentBlockDao.saveContentBlock(project, contentBlock);
+    }
+    
+    // Delete ContentBlock
+    @RequestMapping(value = "/contentblock/{projectId}/{contentBlockId}", method = RequestMethod.DELETE )
+    public boolean deleteContentBlock( @PathVariable String projectId, @PathVariable String contentBlockId) {
+        Long projectIdLong = Long.parseLong(projectId);
+        Long contentBlockIdLong = Long.parseLong(contentBlockId);
+        Project project = projectDao.getProjectById(projectIdLong);
+        return contentBlockDao.deleteContentBlock(project, contentBlockIdLong);
+    }
+    
     // for constructor injection
-    public ProjectRestController(ProjectDao projectDao) {
+    public ProjectRestController(ProjectDao projectDao, ContentBlockDao contentBlockDao) {
         this.projectDao = projectDao;
+        this.contentBlockDao = contentBlockDao;
     }
 
     public void setProjectDao(ProjectDao projectDao) {
         this.projectDao = projectDao;
+    }
+    
+    public void setContentBlockDao(ContentBlockDao contentBlockDao) {
+        this.contentBlockDao = contentBlockDao;
     }
 
 }
