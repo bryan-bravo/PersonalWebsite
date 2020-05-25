@@ -1,6 +1,11 @@
 package com.portfolio.bork.webapp.services.db;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -14,6 +19,13 @@ public class ProjectDaoImpl implements ProjectDao {
     private EntityManager entityManager;
     
     public ProjectDaoImpl() {}
+
+    @Override
+    public List<Project> getAllProjectsCondensed() {
+        // this uses Result Classes (Constructor Expressions)
+        String query = "SELECT NEW com.portfolio.bork.webapp.model.Project( P.id, P.title ) from Project as P";
+        return entityManager.createQuery(query, Project.class).getResultList();
+    }
 
     public Project getProjectById(Long projectId) {
         return entityManager.find(Project.class, projectId);

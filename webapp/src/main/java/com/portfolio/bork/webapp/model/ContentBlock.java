@@ -29,15 +29,23 @@ public class ContentBlock {
     @Column(name="cb_order")
     private int order;
     
+/*
+url to file on disk 
+can go here
+then in query if content block is of type disc
+pull the 
+
+*/
+
+
     @ManyToOne
     @JoinColumn(name = "fk_project_id") // this generates the foreign key column in the database
     @JsonIgnore
     private Project project; 
     
-
     public ContentBlock () {
     }
-
+    
     public ContentBlock(Long id, String type, String content, int order, Project project) {
         this.id = id;
         this.type = type;
@@ -85,8 +93,6 @@ public class ContentBlock {
     public void setProject(Project project) {
         this.project = project;
     }
+    // fluent setters
     
-    // optional fields
-    // ContentFile file;
-    // Link link;
 }

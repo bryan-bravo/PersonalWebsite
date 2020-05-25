@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.portfolio.bork.webapp.services.db.ContentBlockDao;
 import com.portfolio.bork.webapp.services.db.ProjectDao;
+
+import java.util.List;
+
 import com.portfolio.bork.webapp.model.ContentBlock;
 import com.portfolio.bork.webapp.model.Project;
 
@@ -17,7 +20,20 @@ public class ProjectRestController {
 
     private ProjectDao projectDao;
     private ContentBlockDao contentBlockDao;
-    
+    /*
+        get condensed projects
+        return 
+        id
+        title
+        // images
+        // type
+
+     */
+    @RequestMapping(value = "/project/getall", method = RequestMethod.GET )
+    public List<Project> getAllProjectsCondensed() {
+        return projectDao.getAllProjectsCondensed();
+    }
+
     // get project
     @RequestMapping(value = "/project/{projectId}", method = RequestMethod.GET )
     public Project getProjectById( @PathVariable String projectId) {
@@ -28,6 +44,7 @@ public class ProjectRestController {
     // Create Project
     @RequestMapping(value = "/project", method = RequestMethod.POST )
     public Project createProject(@RequestBody Project project) {
+        // TODO: set the date here
          return projectDao.saveProject(project);
         
     }

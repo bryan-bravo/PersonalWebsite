@@ -8,7 +8,7 @@
 <script>
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
-
+// temporarily holding on to this page for the sake of reference
 export default {
   name: 'ProjectDashboard',
   components: {

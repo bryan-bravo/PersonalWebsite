@@ -21,6 +21,9 @@ public class Project{
     private String title;
     @Column( name = "p_date_modified")
     private String dateModified;
+    
+    // TODO: add a filter type
+
     @OneToMany(mappedBy = "project")
     private List<ContentBlock> contentBlocks;
 
@@ -33,6 +36,11 @@ public class Project{
         this.title = title;
         this.dateModified = dateModified;
         this.contentBlocks = contentBlocks;
+    }
+
+    public Project(Long id, String title) {
+        this.id = id;
+        this.title = title;
     }
 
     public Long getId() {
@@ -66,7 +74,24 @@ public class Project{
     public void setContentBlocks(List<ContentBlock> contentBlocks) {
         this.contentBlocks = contentBlocks;
     }
-  
+
+    // fluent setters
+    // public Project id(Long id) {
+    //     this.id = id;
+    //     return this;
+    // }
+
+    // public Project title(String title) {
+    //     this.title = title;
+    //     return this;
+    // }
+
+    // public Project dateModified(String dateModified) {
+    //     this.dateModified = dateModified;
+    //     return this;
+    // }
+
+
     @Override
     public String toString() {
         return "{" +
