@@ -5,8 +5,8 @@
       <!-- <router-link to="/">Home</router-link> | -->
       <router-link to="/">About</router-link> |
       <router-link to="/resume">Resume</router-link> |
-      <a class='dash-bar-item' href='https://github.com/bryan-bravo'>Github </a> |
-      <router-link to="/">Projects & Adventures</router-link>
+      <a href='https://github.com/bryan-bravo'>Github </a> |
+      <router-link to="/projects">Projects & Adventures</router-link>
     </div>
     <router-view/>
   </div>

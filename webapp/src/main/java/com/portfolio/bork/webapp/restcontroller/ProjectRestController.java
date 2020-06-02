@@ -20,17 +20,11 @@ public class ProjectRestController {
 
     private ProjectDao projectDao;
     private ContentBlockDao contentBlockDao;
-    /*
-        get condensed projects
-        return 
-        id
-        title
-        // images
-        // type
 
-     */
     @RequestMapping(value = "/project/getall", method = RequestMethod.GET )
     public List<Project> getAllProjectsCondensed() {
+        // TODO: images
+        // TODO: type
         return projectDao.getAllProjectsCondensed();
     }
 

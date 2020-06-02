@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 // import Home from '../views/Home.vue'
-import HelloWorld from '@/components/HelloWorld.vue'
+import ProjectDashboard from '@/components/ProjectDashboard.vue'
 
 Vue.use(VueRouter)
 
@@ -21,9 +21,9 @@ Vue.use(VueRouter)
     component: () => import(/* webpackChunkName: "about" */ '../views/Resume.vue')
   },
     {
-    path: '/test',
+    path: '/projects',
     name: 'ProjectDashboard',
-    component: HelloWorld
+    component: ProjectDashboard
   }
 
 
