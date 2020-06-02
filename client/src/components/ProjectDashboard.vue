@@ -1,34 +1,41 @@
 <template>
   <div class="ProjectDashboard">
   Gangster Project Dashboard
-  <button @click = "testHttpService()">Test HttpService</button>
+  <button @click = "test()">Test HttpService</button>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import HttpService from '../services/HttpService';
-
+import Project from '../models/Project';
 @Component
 export default class ProjectDashboard extends Vue {
   private httpService: HttpService;
+  private projects: Project[];
 
   constructor() {
     super();
     this.httpService = this.$store.state.httpService;
+    this.projects = [];
   } 
-
-  testHttpService(): void {
+  
+  //this is how to init shit
+  mounted(): void {
+    
     this.httpService.getProjects()
     .then( (res: any) => {
-      console.log(res.data)
+      this.projects = res.data;
     }).catch( (err: any) => {
       console.log(err)
     });
 
-
   }
-  //TODO: get this bitch to  commnicate with backend, may need proxy
+
+    test(): void {
+      console.log(this.projects);
+    }
+
 }
 </script>
 
