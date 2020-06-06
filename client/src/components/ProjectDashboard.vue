@@ -1,7 +1,24 @@
 <template>
   <div class="ProjectDashboard">
-  Gangster Project Dashboard
-  <button @click = "test()">Test HttpService</button>
+    Projects
+
+    <!-- projects -->
+    <button @click='toggleEditState()'>Toggle Edit State</button>
+    <br/>
+    <input v-model ='newProjectName' type = 'text'/>
+    <button @click='saveProject(0)'>New Project</button>
+
+    <!-- will be project components -->
+      <div 
+      v-for='project in projects' v-bind:key = 'project.id'
+      class = 'project-thumbnail'> 
+        <h3 v-if='!editState'> {{project.title}} </h3>
+        <div v-if='editState'>
+          <input v-model='project.title' type='input'>
+          <button @click='saveProject(project.id)'>Update Project</button>
+          <button @click='deleteProject(project.id)'>Delete Project</button>
+        </div>
+      </div>
   </div>
 </template>
 
@@ -9,20 +26,26 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import HttpService from '../services/HttpService';
 import Project from '../models/Project';
+
 @Component
 export default class ProjectDashboard extends Vue {
+
   private httpService: HttpService;
   private projects: Project[];
+  private newProjectName: string;
+  private editState: boolean;
 
   constructor() {
     super();
     this.httpService = this.$store.state.httpService;
     this.projects = [];
+    this.newProjectName = '';
+    this.editState = false;
   } 
   
-  //this is how to init shit
   mounted(): void {
-    
+
+    //this is how to init shit
     this.httpService.getProjects()
     .then( (res: any) => {
       this.projects = res.data;
@@ -32,17 +55,64 @@ export default class ProjectDashboard extends Vue {
 
   }
 
-    test(): void {
-      console.log(this.projects);
+  saveProject(id: number): void {
+
+    let project;
+    let index = this.projects.length;
+
+    // populate project to send in request
+    if (id == 0) {
+      project = new Project(undefined, this.newProjectName, '',[] );
+    } else {
+        project = this.projects.find(proj => proj.id == id);
+        index = this.projects.findIndex(proj => proj.id == id);
     }
 
+    // edit an existing project, just the title.
+    this.httpService.saveProject(project)
+    .then( (res: any) => {
+      // put result into project field
+      this.newProjectName = '';
+      if( id == 0 )
+        this.projects.push(res.data)
+      else
+        this.projects[index] = res.data;
+    })
+    .catch( (err: any) => {
+      console.log(err)
+    });
+  }
+
+  deleteProject(id: number): void {
+
+    const confirmation: boolean = window.confirm('Delete Project?')
+    if(confirmation) {
+      this.httpService.deleteProject(id)
+      .then( (res: any) => {
+        if (res.data == true) {
+          const index: number = this.projects.findIndex(proj => proj.id == id);
+          this.projects.splice(index, 1);
+        } else {
+          // make alert that project failed to delete
+          console.log("backend error ");
+        }
+        
+      }).catch( (err: any) => {
+        console.log(err)
+      });
+    }
+
+    
+  }
+
+  toggleEditState(): void {
+    this.editState = !this.editState;
+  }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h3 {
   margin: 40px 0 0;
 }
-
 </style>

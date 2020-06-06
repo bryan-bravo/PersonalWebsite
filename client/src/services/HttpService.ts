@@ -1,4 +1,4 @@
-// import Project from '../models/Project';
+import Project from '../models/Project';
 import axios from 'axios';
 // will probably need axios
 
@@ -13,6 +13,15 @@ export default class HttpService {
     getProjects(): any {
         return axios.get(`${this.basePath}/project/getall`);
     }
-    // return a list`
-    // if  
+    // Save a project
+    saveProject(project?: Project): Promise<Project> {
+        return axios.post(
+            `${this.basePath}/project`,
+            project
+        );
+    }
+    // Delete Project
+    deleteProject(id: number): Promise<boolean> {
+        return axios.delete(`${this.basePath}/project/${id}`);
+    }
 }
