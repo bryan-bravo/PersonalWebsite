@@ -1,8 +1,7 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
-// import Home from '../views/Home.vue'
 import ProjectDashboard from '@/components/ProjectDashboard.vue'
-
+import ProjectArticle from '@/components/ProjectArticle.vue'
 Vue.use(VueRouter)
 
   const routes: Array<RouteConfig> = [
@@ -20,10 +19,16 @@ Vue.use(VueRouter)
     name: 'Resume',
     component: () => import(/* webpackChunkName: "about" */ '../views/Resume.vue')
   },
-    {
+  {
     path: '/projects',
     name: 'ProjectDashboard',
     component: ProjectDashboard
+  },
+  {
+    path: '/project/:projectId',
+    name: 'ProjectArticle',
+    component: ProjectArticle,
+    props: true
   }
 
 

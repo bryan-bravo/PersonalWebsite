@@ -5,9 +5,10 @@
     <!-- projects -->
     <button @click='toggleEditState()'>Toggle Edit State</button>
     <br/>
-    <input v-model ='newProjectName' type = 'text'/>
-    <button @click='saveProject(0)'>New Project</button>
-
+    <div v-if='editState'>
+      <input v-model ='newProjectName' type = 'text'/>
+      <button @click='saveProject(0)'>New Project</button>
+    </div>
     <!-- will be project components -->
       <div 
       v-for='project in projects' v-bind:key = 'project.id'
