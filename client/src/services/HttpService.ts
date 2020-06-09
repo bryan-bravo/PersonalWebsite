@@ -9,9 +9,13 @@ export default class HttpService {
     constructor(basePath: string) {
         this.basePath = basePath;
     }
-    // get all projects
+    // get all projects condensed
     getProjects(): any {
         return axios.get(`${this.basePath}/project/getall`);
+    }
+    // Get Project By Id
+    getProjectById(id: number): Promise<Project> {
+        return axios.get(`${this.basePath}/project/${id}`);
     }
     // Save a project
     saveProject(project?: Project): Promise<Project> {
@@ -24,4 +28,5 @@ export default class HttpService {
     deleteProject(id: number): Promise<boolean> {
         return axios.delete(`${this.basePath}/project/${id}`);
     }
+
 }

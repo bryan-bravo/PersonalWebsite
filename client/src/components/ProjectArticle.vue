@@ -1,5 +1,8 @@
 <template>
-<p>Project Article </p>
+<div class='ProjectArticle'>
+  <p>Project Article </p>
+  <p>{{project.title}}</p>
+</div>
 </template>
 
 <script lang="ts">
@@ -13,29 +16,27 @@ export default class ProjectArticle extends Vue {
   private httpService: HttpService;
   private editState: boolean;
   @Prop({default: ''})
-  private projectId!: string;
-  private project: Project | undefined;
+  private projectId!: number;
+  private project!: Project;
 
   constructor() {
     super();
     this.httpService = this.$store.state.httpService;
     this.editState = false;
-    this.Project = undefined;
+    this.project = new Project(0,"","",[]);
   } 
-  // created(): void {
-  //   let this.projectId = this.$router.params.projectId;
-  // }
-  // mounted(): void {
 
-    // populate the 
-    // this.httpService.method()
-    // .then( (res: any) => {
+  mounted(): void {
 
-    // }).catch( (err: any) => {
-    //   console.log(err)
-    // });
+    // get Project 
+    this.httpService.getProjectById(this.projectId)
+    .then( (res: any) => {
+      this.project = res.data;
+    }).catch( (err: any) => {
+      console.log(err)
+    });
 
-  // }
+  }
 
   // saveContentBlock(id: number): void {
 
