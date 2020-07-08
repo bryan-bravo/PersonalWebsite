@@ -1,8 +1,10 @@
 <template>
-<div class='ProjectArticle'>
-  <p>Project Article </p>
-  <p>{{project.title}}</p>
-</div>
+  <div class='ProjectArticle'>
+    <p>Project Article Dashboard</p>
+    <p>{{project.title}}</p>
+    <p> {{project.dateModified}}</p>
+    <!-- contentBlocks will be a component-->
+  </div>
 </template>
 
 <script lang="ts">
