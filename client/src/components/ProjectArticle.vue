@@ -4,6 +4,7 @@
     <p>{{project.title}}</p>
     <p> {{project.dateModified}}</p>
     <!-- contentBlocks will be a component-->
+    <ContentBlockComponent></ContentBlockComponent>
   </div>
 </template>
 
@@ -11,8 +12,12 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import HttpService from '../services/HttpService';
 import Project from '../models/Project';
+import ContentBlockComponent from './ContentBlockComponent.vue';
 
-@Component
+@Component({
+  components: { ContentBlockComponent }
+})
+//TODO: go to angular link and look at example of utilizng other cocmponetns?
 export default class ProjectArticle extends Vue {
 
   private httpService: HttpService;
