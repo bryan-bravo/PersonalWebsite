@@ -1,3 +1,4 @@
+import ContentBlock from './ContentBlock'
 export default class Project {
 
     id: number | undefined;

@@ -3,8 +3,10 @@
     <p>Project Article Dashboard</p>
     <p>{{project.title}}</p>
     <p> {{project.dateModified}}</p>
-    <!-- contentBlocks will be a component-->
-    <ContentBlockComponent></ContentBlockComponent>
+    <!-- contentBlocks -->
+    <div :key='contentBlock.id' v-for='contentBlock in project.contentBlocks' class='content'>
+      <ContentBlockComponent :content = "contentBlock"></ContentBlockComponent>
+    </div>
   </div>
 </template>
 
