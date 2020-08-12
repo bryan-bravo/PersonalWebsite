@@ -24,6 +24,7 @@ public class ContentBlockDaoImpl implements ContentBlockDao {
     public ContentBlock getContentBlockById(Long contentBlockId) {
         return entityManager.find(ContentBlock.class, contentBlockId);
     }
+    
     @Override
     @Transactional
     public ContentBlock saveContentBlock(Project project, ContentBlock contentBlock) {
