@@ -29,6 +29,8 @@ public class ContentBlock {
     @Column(name="cb_order")
     private int order;
     
+    @Column(name="cb_url")
+    private String url;
 /*
 url to file on disk 
 can go here
@@ -46,11 +48,12 @@ pull the
     public ContentBlock () {
     }
     
-    public ContentBlock(Long id, String type, String content, int order, Project project) {
+    public ContentBlock(Long id, String type, String content, int order, String url, Project project) {
         this.id = id;
         this.type = type;
         this.content = content;
         this.order = order;
+        this.url = url;
         this.project = project;
     }
     
@@ -84,6 +87,14 @@ pull the
 
     public void setOrder(int order) {
         this.order = order;
+    }
+
+    public String getUrl() {
+        return this.url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public Project getProject() {
