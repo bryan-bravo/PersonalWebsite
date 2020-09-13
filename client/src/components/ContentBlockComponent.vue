@@ -6,13 +6,17 @@
     <div> 
       
       <!-- Regular text -->
-      <div v-if="content.type==='text'">
-      {{content.content}} 
-      </div>
+      <div v-if="content.type==='text'"> {{content.content}} </div>
 
       <!-- link -->
        <a  v-if="content.type==='link'" :href='content.url'> {{content.content}} </a> 
-      
+      <!-- image | https://www.labnol.org/embed/google/photos/-->
+      <div v-if="content.type==='image'">
+        <!-- for external url--> 
+        <img :src="content.url"/>
+
+      </div>
+
     </div>
     
     <!-- when editing we will have smaller stuff (form inputs)to modify the actual content displayed if more complex --> 
@@ -32,10 +36,10 @@ export default class ContentBlockComponent extends Vue {
   - going to have a stage theatre like area for the content,
    this will be a div with conditional rules for the different ways to render content
   - when editing we will have smaller stuff (form inputs)to modify the actual content displayed if more complex 
- Content types: 
+ Content types: switch(type)
     text : p
     link : a <display text : url>
-    image: img : url path (look into the google photos api)
+    image: img : url path (either google api endpoint | rest end point for image controller)
     video: iframe: 
     code : ??? might be plug in
   TODO create a model dummy class
@@ -52,7 +56,11 @@ export default class ContentBlockComponent extends Vue {
     super();
   } 
 
+  get imageUrl() : String {
+    // if image
 
+    // else if disk image, want to generate a path/link to a get request that returns the same shit as src, look at tools for response definition
+  }
 
 }
 </script>
