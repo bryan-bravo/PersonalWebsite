@@ -13,7 +13,10 @@
       <!-- image | https://www.labnol.org/embed/google/photos/-->
       <div v-if="content.type==='image'">
         <!-- for external url--> 
-        <img :src="content.url"/>
+
+        <!--<img :src="content.url"/>-->
+        <img :src="'image/'+content.url">
+
 
       </div>
 
@@ -56,11 +59,11 @@ export default class ContentBlockComponent extends Vue {
     super();
   } 
 
-  get imageUrl() : String {
-    // if image
+  // get imageUrl() : String {
+  //   // if image
 
-    // else if disk image, want to generate a path/link to a get request that returns the same shit as src, look at tools for response definition
-  }
+  //   // else if disk image, want to generate a path/link to a get request that returns the same shit as src, look at tools for response definition
+  // }
 
 }
 </script>
