@@ -10,16 +10,20 @@
 
       <!-- link -->
        <a  v-if="content.type==='link'" :href='content.url'> {{content.content}} </a> 
+      
       <!-- image | https://www.labnol.org/embed/google/photos/-->
       <div v-if="content.type==='image'">
         <!-- for external url--> 
         <img v-if="isExternalResource(content.url)" :src="content.url"/>
         <!-- for internal hosted images -->
         <img v-else :src="'image/'+content.url">
-
-
       </div>
 
+      <!-- video -->
+      <div v-if="content.type==='video'">
+      <!-- this is the format of the url https://www.youtube.com/embed/0_qCE82oqrA -->
+        <iframe :src="content.url" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+      </div>
     </div>
     
     <!-- when editing we will have smaller stuff (form inputs)to modify the actual content displayed if more complex --> 
