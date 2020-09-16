@@ -13,9 +13,9 @@
       <!-- image | https://www.labnol.org/embed/google/photos/-->
       <div v-if="content.type==='image'">
         <!-- for external url--> 
-
-        <!--<img :src="content.url"/>-->
-        <img :src="'image/'+content.url">
+        <img v-if="isExternalResource(content.url)" :src="content.url"/>
+        <!-- for internal hosted images -->
+        <img v-else :src="'image/'+content.url">
 
 
       </div>
@@ -45,8 +45,7 @@ export default class ContentBlockComponent extends Vue {
     image: img : url path (either google api endpoint | rest end point for image controller)
     video: iframe: 
     code : ??? might be plug in
-  TODO create a model dummy class
-  TODO add a field on the class for the link's display text
+
   TODO: approach these tasks one by one and assure that you can <display | edit>
   TODO edit this and submit the changes to the parent Project Article class
 
@@ -59,11 +58,12 @@ export default class ContentBlockComponent extends Vue {
     super();
   } 
 
-  // get imageUrl() : String {
-  //   // if image
-
-  //   // else if disk image, want to generate a path/link to a get request that returns the same shit as src, look at tools for response definition
-  // }
+  isExternalResource( ): boolean {
+    // if url has http as inside
+    return this.content.url.includes("http");
+    
+    // else if disk image, want to generate a path/link to a get request that returns the same shit as src, look at tools for response definition
+  }
 
 }
 </script>

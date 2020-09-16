@@ -30,6 +30,7 @@ public class ImageRestController {
     // else, will invoke this controller with a content block Id
     @RequestMapping(value = "/image/{imageName}", method = RequestMethod.GET )
     public ResponseEntity getImageByName(@PathVariable String imageName) {
+        
         // read the file
         File fileToDownload = new File(this.BASE_PATH + imageName);
         byte[] media = null;
