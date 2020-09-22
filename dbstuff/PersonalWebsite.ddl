@@ -2,9 +2,9 @@ drop schema if exists personalwebsite;
 create schema personalwebsite;
 use personalwebsite;
   
-    create table content_block (
+ create table content_block (
        cb_id bigint not null auto_increment,
-        cb_content varchar(255),
+        cb_content TEXT,
         cb_order integer,
         cb_type varchar(255),
         cb_url varchar(255),

@@ -23,7 +23,7 @@ public class ContentBlock {
     @Column(name="cb_type")
     private String type;
     
-    @Column(name="cb_content")
+    @Column(name="cb_content",columnDefinition = "TEXT")
     private String content;
     
     @Column(name="cb_order")
