@@ -24,6 +24,11 @@
       <!-- this is the format of the url https://www.youtube.com/embed/0_qCE82oqrA -->
         <iframe :src="content.url" width="560" height="315" frameborder="0" allowfullscreen></iframe>
       </div>
+
+      <!-- code -->
+      <div v-if="content.type==='code'">
+        <pre><code :data-language="content.language">{{content.content}}</code></pre>
+      </div>
     </div>
     
     <!-- when editing we will have smaller stuff (form inputs)to modify the actual content displayed if more complex --> 

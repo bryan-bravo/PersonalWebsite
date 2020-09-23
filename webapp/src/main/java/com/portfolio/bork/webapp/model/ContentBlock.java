@@ -23,22 +23,20 @@ public class ContentBlock {
     @Column(name="cb_type")
     private String type;
     
-    @Column(name="cb_content",columnDefinition = "TEXT")
+    @Column(name="cb_content", columnDefinition = "TEXT")
     private String content;
+
     
     @Column(name="cb_order")
     private int order;
     
     @Column(name="cb_url")
     private String url;
-/*
-url to file on disk 
-can go here
-then in query if content block is of type disc
-pull the 
-
-*/
-
+    
+    // TODO: get the language working, should be able to accept null
+    @Column(name="cb_lang")
+    private String language;
+    
 
     @ManyToOne
     @JoinColumn(name = "fk_project_id") // this generates the foreign key column in the database
@@ -48,12 +46,13 @@ pull the
     public ContentBlock () {
     }
     
-    public ContentBlock(Long id, String type, String content, int order, String url, Project project) {
+    public ContentBlock(Long id, String type, String content,  int order, String url, String language, Project project) {
         this.id = id;
         this.type = type;
         this.content = content;
         this.order = order;
         this.url = url;
+        this.language = language;
         this.project = project;
     }
     
@@ -105,5 +104,13 @@ pull the
         this.project = project;
     }
     // fluent setters
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
     
 }
