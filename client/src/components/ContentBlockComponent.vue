@@ -2,7 +2,7 @@
   <!-- wrapper element -->
   <div>
 
-    <!-- display -->
+    <!----- display ----->
     <div> 
       
       <!-- Regular text -->
@@ -12,7 +12,53 @@
        <a  v-if="content.type==='link'" :href='content.url'> {{content.content}} </a> 
       
       <!-- image | https://www.labnol.org/embed/google/photos/-->
+      <!-- TODO: depending on screen size we conditionally set the parameters to size the photo -->
       <div v-if="content.type==='image'">
+        <!-- for external url--> 
+        <img v-if="isExternalResource(content.url)" :src="content.url"/>
+        <!-- for internal hosted images -->
+        <img v-else :src="'image/'+content.url">
+      </div>
+
+      <!-- video -->
+      <!-- TODO: dynamically generate the width based off of the media size -->
+      <div v-if="content.type==='video'">
+      <!-- this is the format of the url https://www.youtube.com/embed/0_qCE82oqrA -->
+        <iframe :src="content.url" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+      </div>
+
+      <!-- code -->
+      <div v-if="content.type==='code'">
+        <!-- TODO: text area for the content take line breaks into account, text input or dropdown for language -->
+        <pre><code :data-language="content.language">{{content.content}}</code></pre>
+      </div>
+    </div>
+    
+    <!----- editing -----> 
+    <div>
+      <!-- Regular text -->
+      <div v-if="content.type==='text'"> 
+        <!-- TODO: one input area, want sufficient space to work -->
+       {{content.content}} 
+        
+      </div>
+
+      <!-- link -->
+      <!-- TODO: two inputs, one for the url and one for the display tex -->
+       <a  v-if="content.type==='link'" :href='content.url'> {{content.content}} </a> 
+      
+      <!-- image | https://www.labnol.org/embed/google/photos/-->
+      <div v-if="content.type==='image'">
+        <!-- TODO:
+            if disc
+              well image upload file/IO so some logic is going to be necessary on the backend
+              response should return the url 
+              display a file form input
+              also display text form input, to display the server url so if it is set we can refer to it
+              that was the same image can be used accross different components
+            elif external url
+              should just be a form text input
+        -->
         <!-- for external url--> 
         <img v-if="isExternalResource(content.url)" :src="content.url"/>
         <!-- for internal hosted images -->
@@ -22,6 +68,7 @@
       <!-- video -->
       <div v-if="content.type==='video'">
       <!-- this is the format of the url https://www.youtube.com/embed/0_qCE82oqrA -->
+      <!-- TODO: should just be a url for an embeded video-->
         <iframe :src="content.url" width="560" height="315" frameborder="0" allowfullscreen></iframe>
       </div>
 
@@ -29,10 +76,8 @@
       <div v-if="content.type==='code'">
         <pre><code :data-language="content.language">{{content.content}}</code></pre>
       </div>
+
     </div>
-    
-    <!-- when editing we will have smaller stuff (form inputs)to modify the actual content displayed if more complex --> 
-    <div></div>
   
   </div>
 </template>
@@ -53,12 +98,13 @@ export default class ContentBlockComponent extends Vue {
     link : a <display text : url>
     image: img : url path (either google api endpoint | rest end point for image controller)
     video: iframe: 
-    code : ??? might be plug in
+    code : ??? might be plug in TODO: get rainbow going
 
   TODO: approach these tasks one by one and assure that you can <display | edit>
   TODO edit this and submit the changes to the parent Project Article class
 
 */
+// TODO: make this edit state toggle only visible to admin
 //   private editState: boolean;
   @Prop({default: ''})
   private content!: ContentBlock;
@@ -70,8 +116,7 @@ export default class ContentBlockComponent extends Vue {
   isExternalResource( ): boolean {
     // if url has http as inside
     return this.content.url.includes("http");
-    
-    // else if disk image, want to generate a path/link to a get request that returns the same shit as src, look at tools for response definition
+        
   }
 
 }
