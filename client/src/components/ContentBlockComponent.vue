@@ -1,7 +1,6 @@
 <template>
   <!-- wrapper element -->
   <div>
-
     <!----- display ----->
     <div> 
       
@@ -35,18 +34,29 @@
     </div>
     
     <!----- editing -----> 
-    <div>
+    <button v-on:click="editState = !editState">Edit</button>
+
+    <div v-if="editState">
+        <button>Save</button>
+
       <!-- Regular text -->
       <div v-if="content.type==='text'"> 
         <!-- TODO: one input area, want sufficient space to work -->
-       {{content.content}} 
+        <label>Content</label>
+        <textarea type="textarea" v-model="content.content"> </textarea>
         
       </div>
 
       <!-- link -->
       <!-- TODO: two inputs, one for the url and one for the display tex -->
-       <a  v-if="content.type==='link'" :href='content.url'> {{content.content}} </a> 
-      
+      <div  v-if="content.type==='link'" :href='content.url'> {{content.content}} 
+            <label>Content</label>
+            <input v-model="content.content" />
+            <label>URL</label>
+            <input v-model="content.url" />
+      </div> 
+            
+
       <!-- image | https://www.labnol.org/embed/google/photos/-->
       <div v-if="content.type==='image'">
         <!-- TODO:
@@ -59,22 +69,26 @@
             elif external url
               should just be a form text input
         -->
+        TODO
         <!-- for external url--> 
-        <img v-if="isExternalResource(content.url)" :src="content.url"/>
+        <!-- <img v-if="isExternalResource(content.url)" :src="content.url"/> -->
         <!-- for internal hosted images -->
-        <img v-else :src="'image/'+content.url">
+        <!-- <img v-else :src="'image/'+content.url"> -->
       </div>
 
       <!-- video -->
       <div v-if="content.type==='video'">
       <!-- this is the format of the url https://www.youtube.com/embed/0_qCE82oqrA -->
       <!-- TODO: should just be a url for an embeded video-->
-        <iframe :src="content.url" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+        <label>Embedded URL </label>
+        <input v-model="content.url">
       </div>
 
       <!-- code -->
       <div v-if="content.type==='code'">
-        <pre><code :data-language="content.language">{{content.content}}</code></pre>
+        <!-- <pre><code :data-language="content.language">{{content.content}}</code></pre> -->
+      
+        <textarea type="textarea" v-model="content.content"> </textarea>
       </div>
 
     </div>
@@ -105,12 +119,13 @@ export default class ContentBlockComponent extends Vue {
 
 */
 // TODO: make this edit state toggle only visible to admin
-//   private editState: boolean;
+  private editState: boolean;
   @Prop({default: ''})
   private content!: ContentBlock;
   
   constructor() {
     super();
+    this.editState = false;
   } 
 
   isExternalResource( ): boolean {
@@ -118,6 +133,9 @@ export default class ContentBlockComponent extends Vue {
     return this.content.url.includes("http");
         
   }
+  // TODO: save the content block, emit to parent I think?
+
+  // TODO: delete the content block
 
 }
 </script>
