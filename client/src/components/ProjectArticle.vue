@@ -5,7 +5,7 @@
     <p> {{project.dateModified}}</p>
     <!-- contentBlocks -->
     <div :key='contentBlock.id' v-for='contentBlock in project.contentBlocks' class='content'>
-      <ContentBlockComponent :content = "contentBlock"></ContentBlockComponent>
+      <ContentBlockComponent :content = "contentBlock" :projectId = "projectId"></ContentBlockComponent>
     </div>
   </div>
 </template>
@@ -19,7 +19,6 @@ import ContentBlockComponent from './ContentBlockComponent.vue';
 @Component({
   components: { ContentBlockComponent }
 })
-//TODO: go to angular link and look at example of utilizng other cocmponetns?
 export default class ProjectArticle extends Vue {
 
   private httpService: HttpService;
@@ -46,15 +45,6 @@ export default class ProjectArticle extends Vue {
     });
 
   }
-
-  // saveContentBlock(id: number): void {
-
- 
-  // }
-
-  // deleteContenBlock(id: number): void {
-    
-  // }
 
   toggleEditState(): void {
     this.editState = !this.editState;

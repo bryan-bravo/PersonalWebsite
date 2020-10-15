@@ -1,4 +1,5 @@
 import Project from '../models/Project';
+import ContentBlock from '@/models/ContentBlock';
 import axios from 'axios';
 // will probably need axios
 
@@ -28,5 +29,14 @@ export default class HttpService {
     deleteProject(id: number): Promise<boolean> {
         return axios.delete(`${this.basePath}/project/${id}`);
     }
+
+    // Save a content block
+    saveContentBlock(projectId: number, contentBlock: ContentBlock): Promise<ContentBlock> {
+        return axios.post(
+            `${this.basePath}/contentblock/${projectId}`,
+            contentBlock
+        );
+    }
+    // Selete a content block
 
 }

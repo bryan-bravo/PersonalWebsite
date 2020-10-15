@@ -27,7 +27,8 @@ public class ContentBlockDaoImpl implements ContentBlockDao {
     public ContentBlock saveContentBlock(Project project, ContentBlock contentBlock) {
         project.getContentBlocks().add(contentBlock);
         contentBlock.setProject(project);
-        entityManager.persist(contentBlock);
+        // entityManager.persist(contentBlock);
+        entityManager.merge(contentBlock);
         return contentBlock;
     }; 
     

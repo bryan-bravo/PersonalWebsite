@@ -37,18 +37,15 @@
     <button v-on:click="editState = !editState">Edit</button>
 
     <div v-if="editState">
-        <button>Save</button>
+        <button v-on:click="saveContentBlock()">Save</button>
 
       <!-- Regular text -->
       <div v-if="content.type==='text'"> 
-        <!-- TODO: one input area, want sufficient space to work -->
         <label>Content</label>
         <textarea type="textarea" v-model="content.content"> </textarea>
-        
       </div>
 
       <!-- link -->
-      <!-- TODO: two inputs, one for the url and one for the display tex -->
       <div  v-if="content.type==='link'" :href='content.url'> {{content.content}} 
             <label>Content</label>
             <input v-model="content.content" />
@@ -60,7 +57,7 @@
       <!-- image | https://www.labnol.org/embed/google/photos/-->
       <div v-if="content.type==='image'">
         <!-- TODO:
-            if disc
+            if discS
               well image upload file/IO so some logic is going to be necessary on the backend
               response should return the url 
               display a file form input
@@ -79,7 +76,6 @@
       <!-- video -->
       <div v-if="content.type==='video'">
       <!-- this is the format of the url https://www.youtube.com/embed/0_qCE82oqrA -->
-      <!-- TODO: should just be a url for an embeded video-->
         <label>Embedded URL </label>
         <input v-model="content.url">
       </div>
@@ -87,7 +83,11 @@
       <!-- code -->
       <div v-if="content.type==='code'">
         <!-- <pre><code :data-language="content.language">{{content.content}}</code></pre> -->
-      
+        <label> Language </label>
+        <select v-model="content.language">
+          <option> python </option>
+          <option> java </option>
+        </select>
         <textarea type="textarea" v-model="content.content"> </textarea>
       </div>
 
@@ -99,6 +99,8 @@
 <script lang='ts'>
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import ContentBlock from '../models/ContentBlock'
+import HttpService from '../services/HttpService';
+
 @Component
 export default class ContentBlockComponent extends Vue {
 /* 
@@ -120,12 +122,17 @@ export default class ContentBlockComponent extends Vue {
 */
 // TODO: make this edit state toggle only visible to admin
   private editState: boolean;
+  private httpService: HttpService;
+  @Prop({default: ''})
+  private projectId!: number;
   @Prop({default: ''})
   private content!: ContentBlock;
   
   constructor() {
     super();
     this.editState = false;
+    this.httpService = this.$store.state.httpService;
+
   } 
 
   isExternalResource( ): boolean {
@@ -133,9 +140,29 @@ export default class ContentBlockComponent extends Vue {
     return this.content.url.includes("http");
         
   }
-  // TODO: save the content block, emit to parent I think?
+  
+  /**
+   * Calls HttpService and sends down the payload
+   * Remeber that .then catches 200's and .catch handles error status code
+   * 
+   */
+  saveContentBlock(): void {
+    this.httpService.saveContentBlock(this.projectId, this.content)
+    .then( (res: any) => {
+     // res.data;
+     console.log(res.data)
 
-  // TODO: delete the content block
+    }).catch( (err: any) => {
+     // console.log(err)
+    });
+    
+    // But this is by reference so parent will already have changes
+  }
+
+  // TODO: delete the content block | parent will need to remove from
+
+  // TODO: image upload
+
 
 }
 </script>

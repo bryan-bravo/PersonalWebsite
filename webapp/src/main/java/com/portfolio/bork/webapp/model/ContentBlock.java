@@ -33,7 +33,6 @@ public class ContentBlock {
     @Column(name="cb_url")
     private String url;
     
-    // TODO: get the language working, should be able to accept null
     @Column(name="cb_lang")
     private String language;
     
