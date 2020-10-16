@@ -134,29 +134,36 @@ export default class ContentBlockComponent extends Vue {
     this.httpService = this.$store.state.httpService;
 
   } 
-
+  /**
+   * Utilized by vue to determine whether or not the URL of an image is hosted locally or sharable resource on google photos
+   * @returns boolean :true if it is an external resource
+   */
   isExternalResource( ): boolean {
     // if url has http as inside
     return this.content.url.includes("http");
-        
   }
-  
+
+  mounted() {
+    // if passed in content block does not have an id then we save to server
+    if (!this.content.id) 
+      this.saveContentBlock();
+    
+  }
   /**
    * Calls HttpService and sends down the payload
    * Remeber that .then catches 200's and .catch handles error status code
-   * 
    */
   saveContentBlock(): void {
     this.httpService.saveContentBlock(this.projectId, this.content)
     .then( (res: any) => {
-     // res.data;
+     // call message service and alert that successful
      console.log(res.data)
 
     }).catch( (err: any) => {
-     // console.log(err)
+     // call message service and alert that failure
+      console.log(err.data)
     });
     
-    // But this is by reference so parent will already have changes
   }
 
   // TODO: delete the content block | parent will need to remove from
