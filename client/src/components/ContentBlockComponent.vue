@@ -34,9 +34,9 @@
     </div>
     
     <!----- editing -----> 
-    <button v-on:click="editState = !editState">Edit</button>
+    <button v-if="loggedIn" v-on:click="editState = !editState">Edit</button>
 
-    <div v-if="editState">
+    <div v-if="editState" v-on-clickaway="clickedAway">
         <button v-on:click="saveContentBlock()">Save</button>
         <button v-on:click="deleteContentBlock()">Delete</button>
 
@@ -101,8 +101,11 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import ContentBlock from '../models/ContentBlock'
 import HttpService from '../services/HttpService';
+import { mixin as clickaway } from 'vue-clickaway';
 
-@Component
+@Component({
+  mixins: [clickaway]
+})
 export default class ContentBlockComponent extends Vue {
 /* 
   This component will consume a contentBlock and emit contentBlock to parent component
@@ -118,22 +121,23 @@ export default class ContentBlockComponent extends Vue {
     code : ??? might be plug in TODO: get rainbow going
 
 */
-
-  private editState: boolean;
-  private httpService: HttpService;
   @Prop({default: ''})
   private projectId!: number;
-  // we do not want to manipulate parents data non explicity so we set a local instance here
   @Prop({default: ''})
   private propContent!: ContentBlock;
+  // we do not want to manipulate parents data non explicity so we set a local instance here
   private content: ContentBlock;
+  private httpService: HttpService;
+  private loggedIn: boolean;
+  private editState: boolean;
   
   constructor() {
     super();
-    this.editState = false;
+    // TODO: put logged in into the store
+    this.loggedIn = true;
     this.httpService = this.$store.state.httpService;
     this.content = this.propContent;
-
+    this.editState = false;
   } 
   /**
    * Utilized by vue to determine whether or not the URL of an image is hosted locally or sharable resource on google photos
@@ -189,8 +193,14 @@ export default class ContentBlockComponent extends Vue {
     });
 
   }
-  // TODO: image upload
 
+  // TODO: image upload
+  /**
+   * Utilized if the user clicks away from the contentblock while editing 
+   */
+  clickedAway(): void {
+    this.editState = false;
+  }
 
 }
 </script>

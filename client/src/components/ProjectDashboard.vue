@@ -15,12 +15,13 @@
       class = 'project-thumbnail'> 
         <router-link :to = "{ name: 'ProjectArticle', params: { projectId: project.id }}">
           <h3 v-if='!editState'> {{project.title}} </h3>
-          <div v-if='editState'>
+          
+        </router-link>
+        <div v-if='editState'>
             <input v-model='project.title' type='input'>
             <button @click='saveProject(project.id)'>Update Project</button>
             <button @click='deleteProject(project.id)'>Delete Project</button>
           </div>
-        </router-link>
       </div>
 
   </div>

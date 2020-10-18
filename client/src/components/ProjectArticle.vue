@@ -5,24 +5,26 @@
     <p>Project Article Dashboard</p>
     <p>{{project.title}}</p>
     <p> {{project.dateModified}}</p>
-    
+    <button @click='toggleEditState()'>Toggle Edit State</button>
+
     
     <!-- new block form --> 
-    <div>
+    <div v-if = "editState">
       <label>New ContentBlock of type </label>
       <select>
         <option v-for="type in contentBlockTypes" :key="type" > {{type}} </option>
       </select>
       <button v-on:click="createContentBlock()">Create</button>
     </div>
-
+    <hr/>
     <!-- contentBlocks -->
     <div :key='contentBlock.id' v-for='contentBlock in project.contentBlocks' class='content'>
       <ContentBlockComponent 
-        :propContent = "contentBlock" 
         :projectId = "projectId" 
+        :propContent = "contentBlock" 
         @content-block-deleted = "removeContentBlock"
       ></ContentBlockComponent>
+      <hr/>
     </div>
   </div>
 </template>
