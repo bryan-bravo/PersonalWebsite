@@ -37,6 +37,13 @@ export default class HttpService {
             contentBlock
         );
     }
-    // Selete a content block
-
+    // Delete a content block
+    /**
+     * @remark the stupid undefined parameter is bad design
+     * @param projectId  id of project that contains content block
+     * @param contentBlockId content block identifier
+     */
+    deleteContentBlock(projectId: number, contentBlockId: number | undefined): Promise<boolean> {
+        return axios.delete( `${this.basePath}/contentblock/${projectId}/${contentBlockId}` );
+    }
 }

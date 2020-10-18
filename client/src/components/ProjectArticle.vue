@@ -18,7 +18,11 @@
 
     <!-- contentBlocks -->
     <div :key='contentBlock.id' v-for='contentBlock in project.contentBlocks' class='content'>
-      <ContentBlockComponent :content = "contentBlock" :projectId = "projectId"></ContentBlockComponent>
+      <ContentBlockComponent 
+        :propContent = "contentBlock" 
+        :projectId = "projectId" 
+        @content-block-deleted = "removeContentBlock"
+      ></ContentBlockComponent>
     </div>
   </div>
 </template>
@@ -63,11 +67,17 @@ export default class ProjectArticle extends Vue {
   }
   
   createContentBlock(): void {
-    // instantiate a new content block
-    // add to list
     this.project.contentBlocks.push(
       new ContentBlock(undefined, this.selectedType,"default content text" ,"", 1,""  )
     );
+  }
+
+  removeContentBlock(contentBlockId: number ): void  {
+    const index = this.project.contentBlocks.map(x => {
+      return x.id;
+    }).indexOf(contentBlockId);
+
+    this.project.contentBlocks.splice(index, 1);
   }
 
   /**

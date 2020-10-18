@@ -38,6 +38,7 @@
 
     <div v-if="editState">
         <button v-on:click="saveContentBlock()">Save</button>
+        <button v-on:click="deleteContentBlock()">Delete</button>
 
       <!-- Regular text -->
       <div v-if="content.type==='text'"> 
@@ -116,22 +117,22 @@ export default class ContentBlockComponent extends Vue {
     video: iframe: 
     code : ??? might be plug in TODO: get rainbow going
 
-  TODO: approach these tasks one by one and assure that you can <display | edit>
-  TODO edit this and submit the changes to the parent Project Article class
-
 */
-// TODO: make this edit state toggle only visible to admin
+
   private editState: boolean;
   private httpService: HttpService;
   @Prop({default: ''})
   private projectId!: number;
+  // we do not want to manipulate parents data non explicity so we set a local instance here
   @Prop({default: ''})
-  private content!: ContentBlock;
+  private propContent!: ContentBlock;
+  private content: ContentBlock;
   
   constructor() {
     super();
     this.editState = false;
     this.httpService = this.$store.state.httpService;
+    this.content = this.propContent;
 
   } 
   /**
@@ -149,6 +150,7 @@ export default class ContentBlockComponent extends Vue {
       this.saveContentBlock();
     
   }
+
   /**
    * Calls HttpService and sends down the payload
    * Remeber that .then catches 200's and .catch handles error status code
@@ -157,7 +159,7 @@ export default class ContentBlockComponent extends Vue {
     this.httpService.saveContentBlock(this.projectId, this.content)
     .then( (res: any) => {
      // call message service and alert that successful
-     console.log(res.data)
+     this.content = res.data;
 
     }).catch( (err: any) => {
      // call message service and alert that failure
@@ -166,8 +168,27 @@ export default class ContentBlockComponent extends Vue {
     
   }
 
-  // TODO: delete the content block | parent will need to remove from
+  deleteContentBlock(): void {
+    
+    // todo make an alert first
+    if (!confirm("Are you sure you wish to delete this"))
+      return;
 
+    this.httpService.deleteContentBlock(this.projectId, this.content.id)
+    .then( (res: any) => {
+      console.log(res.data)
+     // need to emit the content block Id to the parent to remove from the list
+           this.$emit('content-block-deleted', this.content.id )
+
+     // call message service and alert that successful
+
+
+    }).catch( (err: any) => {
+     // call message service and alert that failure
+      console.log(err.data)
+    });
+
+  }
   // TODO: image upload
 
 
