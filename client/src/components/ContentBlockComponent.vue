@@ -152,7 +152,6 @@ export default class ContentBlockComponent extends Vue {
     // if passed in content block does not have an id then we save to server
     if (!this.content.id) 
       this.saveContentBlock();
-    
   }
 
   /**
@@ -164,10 +163,13 @@ export default class ContentBlockComponent extends Vue {
     .then( (res: any) => {
      // call message service and alert that successful
      this.content = res.data;
+     this.$store.commit('message', "Content Block saved successfully.")
 
     }).catch( (err: any) => {
      // call message service and alert that failure
       console.log(err.data)
+      this.$store.commit('message', "Content Block save failed.")
+
     });
     
   }
@@ -180,16 +182,16 @@ export default class ContentBlockComponent extends Vue {
 
     this.httpService.deleteContentBlock(this.projectId, this.content.id)
     .then( (res: any) => {
-      console.log(res.data)
-     // need to emit the content block Id to the parent to remove from the list
-           this.$emit('content-block-deleted', this.content.id )
-
-     // call message service and alert that successful
-
+      // need to emit the content block Id to the parent to remove from the list
+      this.$emit('content-block-deleted', this.content.id )
+      // call message service and alert that successful
+      this.$store.commit('message', "Content Block deleted successfully.")
 
     }).catch( (err: any) => {
      // call message service and alert that failure
       console.log(err.data)
+            this.$store.commit('message', "Content Block delete failed.")
+
     });
 
   }

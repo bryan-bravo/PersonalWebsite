@@ -55,7 +55,7 @@ export default class ProjectDashboard extends Vue {
     .then( (res: any) => {
       this.projects = res.data;
     }).catch( (err: any) => {
-      console.log(err)
+            this.$store.commit('message', "Something went wrong.")
     });
 
   }
@@ -76,15 +76,19 @@ export default class ProjectDashboard extends Vue {
     // edit an existing project, just the title.
     this.httpService.saveProject(project)
     .then( (res: any) => {
+
       // put result into project field
       this.newProjectName = '';
       if( id == 0 )
         this.projects.push(res.data)
       else
         this.projects[index] = res.data;
+      
+      this.$store.commit('message', "Project saved successfully.")
+
     })
     .catch( (err: any) => {
-      console.log(err)
+      this.$store.commit('message', "Project save failed.")
     });
   }
 
@@ -97,13 +101,15 @@ export default class ProjectDashboard extends Vue {
         if (res.data == true) {
           const index: number = this.projects.findIndex(proj => proj.id == id);
           this.projects.splice(index, 1);
+            this.$store.commit('message', "Project deleted successfully.")
+
         } else {
           // make alert that project failed to delete
-          console.log("backend error ");
+            this.$store.commit('message', "Project delete failed.")
         }
         
       }).catch( (err: any) => {
-        console.log(err)
+            this.$store.commit('message', "Project delete failed.")
       });
     }
 

@@ -19,6 +19,9 @@ export default new Vuex.Store({
   },
   mutations: {
     // setters, synchronous transactions
+    message(state, message): void {
+      window.alert(message);
+    }
   },
   actions: {
     // Instead of mutating the state, actions commit mutations.
