@@ -1,12 +1,13 @@
 <template>
-  <div class='ProjectArticle'>
+  <div class='project-article'>
     
     <!-- title -->
-    <p>Project Article Dashboard</p>
-    <p>{{project.title}}</p>
-    <p> {{project.dateModified}}</p>
-    <button @click='toggleEditState()'>Toggle Edit State</button>
-
+    <div class = 'title'>
+      <p>Project Article Dashboard</p>
+      <p>{{project.title}}</p>
+      <p> {{project.dateModified}}</p>
+      <button @click='toggleEditState()'>Toggle Edit State</button>
+    </div>
     
     <!-- new block form --> 
     <div v-if = "editState">
@@ -18,13 +19,14 @@
     </div>
     <hr/>
     <!-- contentBlocks -->
-    <div :key='contentBlock.id' v-for='contentBlock in project.contentBlocks' class='content'>
+    <div :key='contentBlock.id' v-for='contentBlock in project.contentBlocks' class='content-block-container'>
       <ContentBlockComponent 
         :projectId = "projectId" 
         :propContent = "contentBlock" 
         @content-block-deleted = "removeContentBlock"
+        class = "content-block-outter"
       ></ContentBlockComponent>
-      <hr/>
+      <!-- <hr/> -->
     </div>
   </div>
 </template>
@@ -94,3 +96,7 @@ export default class ProjectArticle extends Vue {
   }
 }
 </script>
+
+<style lang="css" scoped src="@/assets/css/project-article.css">
+
+</style>

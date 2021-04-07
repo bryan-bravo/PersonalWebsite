@@ -2,7 +2,7 @@
   <div class="ProjectDashboard">
     Projects
 
-    <!-- projects -->
+    <!-- projects functions top -->
     <button @click='toggleEditState()'>Toggle Edit State</button>
     <br/>
     <div v-if='editState'>
@@ -10,21 +10,26 @@
       <button @click='saveProject(0)'>New Project</button>
     </div>
     <!-- will be project components -->
-      <div 
-      v-for='project in projects' v-bind:key = 'project.id'
-      class = 'project-thumbnail'> 
-        <router-link :to = "{ name: 'ProjectArticle', params: { projectId: project.id }}">
-          <h3 v-if='!editState'> {{project.title}} </h3>
-          
-        </router-link>
-        <div v-if='editState'>
-            <input v-model='project.title' type='input'>
-            <button @click='saveProject(project.id)'>Update Project</button>
-            <button @click='deleteProject(project.id)'>Delete Project</button>
-          </div>
-      </div>
+    <!-- these need to be tiles bring in tile.io-->
+    <!-- pull in the pictures -->
+    <div id='projects-container'>
+      <!-- need to be able to edit pictures for project -->
+        <div 
+        v-for='project in projects' v-bind:key = 'project.id'
+        class = 'project-thumbnail'> 
 
-  </div>
+          <router-link :to = "{ name: 'ProjectArticle', params: { projectId: project.id }}">
+            <h3 v-if='!editState'> {{project.title}} </h3>
+            
+          </router-link>
+          <div v-if='editState'>
+              <input v-model='project.title' type='input'>
+              <button @click='saveProject(project.id)'>Update Project Name</button>
+              <button @click='deleteProject(project.id)'>Delete Project</button>
+            </div>
+        </div>
+      </div>
+    </div>
 </template>
 
 <script lang="ts">
@@ -125,5 +130,10 @@ export default class ProjectDashboard extends Vue {
 <style scoped>
 h3 {
   margin: 40px 0 0;
+}
+
+#projects-container {
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 </style>

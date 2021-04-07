@@ -2,11 +2,10 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-// import Rainbow from  'rainbow-code';
-// import 'rainbow-code/themes/css/github.css'
 
-// Rainbow.color()
-// import 'rainbow-code/src/language/python.js'
+import '@/assets/css/project-article.css'
+
+
 Vue.config.productionTip = false
 
 new Vue({

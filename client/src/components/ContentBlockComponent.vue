@@ -134,7 +134,7 @@ export default class ContentBlockComponent extends Vue {
   constructor() {
     super();
     // TODO: put logged in into the store
-    this.loggedIn = true;
+    this.loggedIn = false;
     this.httpService = this.$store.state.httpService;
     this.content = this.propContent;
     this.editState = false;
@@ -161,12 +161,12 @@ export default class ContentBlockComponent extends Vue {
   saveContentBlock(): void {
     this.httpService.saveContentBlock(this.projectId, this.content)
     .then( (res: any) => {
-     // call message service and alert that successful
-     this.content = res.data;
-     this.$store.commit('message', "Content Block saved successfully.")
+
+      this.content = res.data;
+      this.$store.commit('message', "Content Block saved successfully.")
 
     }).catch( (err: any) => {
-     // call message service and alert that failure
+
       console.log(err.data)
       this.$store.commit('message', "Content Block save failed.")
 
@@ -176,7 +176,6 @@ export default class ContentBlockComponent extends Vue {
 
   deleteContentBlock(): void {
     
-    // todo make an alert first
     if (!confirm("Are you sure you wish to delete this"))
       return;
 
@@ -184,19 +183,17 @@ export default class ContentBlockComponent extends Vue {
     .then( (res: any) => {
       // need to emit the content block Id to the parent to remove from the list
       this.$emit('content-block-deleted', this.content.id )
-      // call message service and alert that successful
       this.$store.commit('message', "Content Block deleted successfully.")
 
     }).catch( (err: any) => {
-     // call message service and alert that failure
       console.log(err.data)
             this.$store.commit('message', "Content Block delete failed.")
-
     });
 
   }
 
   // TODO: image upload
+
   /**
    * Utilized if the user clicks away from the contentblock while editing 
    */
@@ -206,3 +203,6 @@ export default class ContentBlockComponent extends Vue {
 
 }
 </script>
+
+<style lang="css" scoped src="@/assets/css/content-block.css">
+</style>
