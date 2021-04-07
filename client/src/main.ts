@@ -4,10 +4,10 @@ import router from './router'
 import store from './store'
 
 import '@/assets/css/project-article.css'
+import VueMasonry from 'vue-masonry-css'
 
 
 Vue.config.productionTip = false
-
 new Vue({
   router,
   store,

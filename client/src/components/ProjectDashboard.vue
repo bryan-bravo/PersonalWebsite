@@ -23,10 +23,10 @@
             
           </router-link>
           <div v-if='editState'>
-              <input v-model='project.title' type='input'>
-              <button @click='saveProject(project.id)'>Update Project Name</button>
-              <button @click='deleteProject(project.id)'>Delete Project</button>
-            </div>
+            <input v-model='project.title' type='input'>
+            <button @click='saveProject(project.id)'>Update Project Name</button>
+            <button @click='deleteProject(project.id)'>Delete Project</button>
+          </div>
         </div>
       </div>
     </div>
@@ -36,6 +36,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import HttpService from '../services/HttpService';
 import Project from '../models/Project';
+import VueMasonry from 'vue-masonry-css'
 
 @Component
 export default class ProjectDashboard extends Vue {

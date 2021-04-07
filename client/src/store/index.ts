@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import HttpService from '../services/HttpService'
+//import VueMasonry from 'vue-masonry-css'
 
 Vue.use(Vuex)
 //const httpServiceInit: HttpService = new HttpService('http://localhost:8080');
