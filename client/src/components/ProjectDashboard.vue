@@ -1,32 +1,32 @@
 <template>
   <div class="ProjectDashboard">
-    Projects
-
     <!-- projects functions top -->
-    <button @click='toggleEditState()'>Toggle Edit State</button>
-    <br/>
-    <div v-if='editState'>
-      <input v-model ='newProjectName' type = 'text'/>
-      <button @click='saveProject(0)'>New Project</button>
+    <div>
+      <button @click='toggleEditState()'>Toggle Edit State</button>
+      <div v-if='editState'>
+        <input v-model ='newProjectName' type = 'text'/>
+        <button @click='saveProject(0)'>New Project</button>
+      </div>
     </div>
     <!-- will be project components -->
     <!-- these need to be tiles bring in tile.io-->
     <!-- pull in the pictures -->
     <div id='projects-container'>
       <!-- need to be able to edit pictures for project -->
-        <div 
-        v-for='project in projects' v-bind:key = 'project.id'
-        class = 'project-thumbnail'> 
+        <div v-for='project in projects' v-bind:key = 'project.id' class = 'project-thumbnail'> 
 
-          <router-link :to = "{ name: 'ProjectArticle', params: { projectId: project.id }}">
-            <h3 v-if='!editState'> {{project.title}} </h3>
-            
+          <router-link :to = "{ name: 'ProjectArticle', params: { projectId: project.id }}" class='project-thumbnail-anchor' >
+            <!-- this will be derived from iterated  -->
+            <img src='../assets/me.jpg' class='project-thumbnail-img'>
+            <h3 class ='project-thumbnail-text' v-if='!editState'> {{project.title}} </h3>
           </router-link>
+          
           <div v-if='editState'>
             <input v-model='project.title' type='input'>
             <button @click='saveProject(project.id)'>Update Project Name</button>
             <button @click='deleteProject(project.id)'>Delete Project</button>
           </div>
+
         </div>
       </div>
     </div>
@@ -36,7 +36,6 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import HttpService from '../services/HttpService';
 import Project from '../models/Project';
-import VueMasonry from 'vue-masonry-css'
 
 @Component
 export default class ProjectDashboard extends Vue {
@@ -134,7 +133,27 @@ h3 {
 }
 
 #projects-container {
+  width:100%;
   display:grid;
   grid-template-columns: 1fr 1fr 1fr;
+  grid-gap:1em;
+  justify-items: center;
+  align-items: center;
+}
+.project-thumbnail {
+  position: relative;
+  width:100%;
+}
+
+.project-thumbnail-anchor {
+
+}
+.project-thumbnail-img {
+  width:100%;
+}
+.project-thumbnail-text {
+  position: absolute;
+  bottom: 8px;
+  left: 16px;
 }
 </style>

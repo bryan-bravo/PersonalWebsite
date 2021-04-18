@@ -32,4 +32,13 @@
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+/* button {
+    font-size: 100%;
+    padding: .5em 1em;
+    color: rgba(0,0,0,.8);
+    border: transparent;
+    background-color: #e6e6e6;
+    text-decoration: none;
+    border-radius: 2px;
+} */
 </style>
