@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import net.bytebuddy.implementation.bind.annotation.IgnoreForBinding;
 /*
     TODO:
     Going to initially hardcode the path, will eventually pull out to config
@@ -26,8 +29,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 */
 @RestController
 public class ImageRestController { 
-     private final String BASE_PATH = "C:/var/image/";
-
+    // TODO: extract these to a file config
+    private final String BASE_PATH = "C:/var/image/";     
+    private final int smallPortraitPxSize;
+    private final int smallLandscapePxSize;
+    private final int mediumPortraitPxSize;
+    private final int mediumLandscapePxSize;
+    private final int 
     /**
      * Used to manually pull image saved on disk
      * @param imageName Name Of File as saved on disk
@@ -53,13 +61,13 @@ public class ImageRestController {
 
     }
 
-    // public ResponseEntity saveImage( File ) {
-    //     // get the image
-    //     // apply disk naming convention
-    //     // create an array of sized images with proper naming conventions
-    //     // compress each one
-    //     // save to disk
-    //     // return size
-    // }
+    // TODO: get this working with postman and save to disk 
+    @RequestMapping(value="/saveimage", method=RequestMethod.POST)
+    public ResponseEntity saveImage( @RequestParam("file") MultipartFile file ) {
+        // get the image
+        MultipartFile file
+        
+
+    }
 
 }

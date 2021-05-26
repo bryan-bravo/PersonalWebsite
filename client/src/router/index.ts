@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import ProjectDashboard from '@/components/ProjectDashboard.vue'
 import ProjectArticle from '@/components/ProjectArticle.vue'
+import FileUpload from '@/components/FileUpload.vue'
+
 Vue.use(VueRouter)
 
   const routes: Array<RouteConfig> = [
@@ -29,6 +31,11 @@ Vue.use(VueRouter)
     name: 'ProjectArticle',
     component: ProjectArticle,
     props: true
+  },
+  {
+    path:'fileupload',
+    name: FileUpload,
+    component: FileUpload
   }
 
 
